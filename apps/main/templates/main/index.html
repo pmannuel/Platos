@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Email Validation</title>
+    {% load staticfiles %}
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <link rel="stylesheet" href="{% static 'main/index.css' %}" >
+    <link rel="stylesheet" href="{% static 'main/google_maps_api.css' %}" >
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <a href="{%url 'main:index'%}">
+                <div id="logo">
+                    <img style="height:25px;" src="{% static 'main/logo.png' %}" alt="">
+                    <h1>Platos</h1>
+                </div>
+            </a>
+            <div id="actions">
+                <a href="{%url 'main:index'%}">Home</a> |
+                <a href="{%url 'login_register:logout'%}">Log Out</a>
+            </div>
+        </div>
+        <div id="content">
+
+        </div>
+        <div id="footer">
+
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Email Validation</title>
+    {% load staticfiles %}
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="{% static 'login_register/index.css' %}" >
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <a href="">
+                <div id="logo">
+                    <img style="height:35px;" src="{% static 'login_register/logo.png' %}" alt="">
+                    <h1>Platos</h1>
+                </div>
+            </a>
+            <div id="log_in_console">
+                <form action='{%url 'login_register:login'%}' method='post'>
+                {% csrf_token %}
+                        <table>
+                            <tr>
+                                <th>Email</th>
+                                <th>Password</th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="email"></td>
+                                <td><input type="password" name="password"></td>
+                                <td><input id="submit" type="submit" name="submit" value="Log in"></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+            <div id="body">
+                <div id="info">
+                    <h1>Find people who do the same things <br> at the same time</h1>
+                    <table>
+                        <tr>
+                            <td class="icon"><img style="height:20%;" src="{% static 'login_register/icon1.png' %}" alt=""></td>
+                            <td><b>Schedule </b>&nbsp your plans and hobbies</td>
+                        </tr>
+                        <tr>
+                            <td class="icon"><img style="height:20%;" src="{% static 'login_register/icon2.png' %}" alt=""></td>
+                            <td><b>Find someone </b>&nbsp with a matching schedule</td>
+                        </tr>
+                        <tr>
+                            <td class="icon"><img style="height:20%;" src="{% static 'login_register/icon3.png' %}" alt=""></td>
+                            <td><b>Connect </b>&nbsp through shared activities</td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="sign_up_console">
+                    {% if login_attempt%}
+                        <h1>TRIED TO LOG In</h1>
+                    {% endif %}
+                    <h1>Sign Up</h1>
+                    <h3>It's free to connect.</h3>
+                    <div id="error_messages">
+                        {% if messages %}
+                        <p>&nbsp</p>
+                        {% for message in messages %}
+                        <p{% if message.tags %} style="color:#B94A48" class="{{ message.tags }}" {% endif %}>&nbsp * {{ message }}</p>
+                        {% endfor %}
+                        <p>&nbsp</p>
+                        {% endif %}
+                    </div>
+                    <form action='{%url 'login_register:register'%}' method='post'>
+                    {% csrf_token %}
+                    <table>
+                        <tr>
+                            <td>
+                                <div id="name_input">
+                                    <input class="name" type="text" name="firstname" placeholder="First Name">
+                                    <input class="name" type="text" name="lastname" placeholder="Last Name">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" name="email" placeholder="Email">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="password" name="password" placeholder="New Password">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="password" name="cpassword" placeholder="Confirm Password">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <i>*password should be at least 8 character</i>
+                            </td>
+                        </tr>
+                    </table>
+                    <input id="submit" type="submit" name="submit" value="Sign Up">
+                </form>
+            </div>
+        </div>
+        <div id="footer">
+            <div id="links">
+                <a href="">About</a>
+                <a href="">Contact</a>
+                <a href="">Terms</a>
+                <a href="">Help</a>
+            </div>
+            <p>Platos Ⓒ 2017</p>
+        </div>
+    </div>
+</body>
+</html>

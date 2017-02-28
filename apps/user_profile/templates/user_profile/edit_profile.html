@@ -20,6 +20,7 @@
                 {% csrf_token %}
                 <input type="submit" name="submit" value="Update Profile"></form>
                 <p>Profile Picture</p>
+                <img src = "../../media/login_register/{{ user.avatar }}" />
                 <form action="" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <p>

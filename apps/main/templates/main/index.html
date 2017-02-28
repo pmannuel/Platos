@@ -17,6 +17,7 @@
     <div id="wrapper">
         <ul id='dropdown1' class='dropdown-content'>
             <li><a href="{%url 'user_profile:index' user_id=user.id%}">Profile</a></li>
+            <li><a href="{%url 'user_profile:edit_profile' user_id=user.id%}">Edit Profile</a></li>
             <li class="divider"></li>
             <li><a href="{%url 'login_register:logout'%}">Log Out</a></li>
         </ul>
@@ -32,7 +33,15 @@
             </div>
         </nav>
         <div id="body">
+            <h1>Homepage: {{user.firstname}} {{user.lastname}}</h1>
+            <h3>{{user.firstname}} is located at {{profile.city}} </h3>
+            <hr>
+            <div id="matches">
 
+            </div>
+            {%for other_user in other_users%}
+            <p>{{other_user.user.firstname}} | located at {{other_user.city}}</p>
+            {%endfor%}
         </div>
         <div id="footer">
 

@@ -6,7 +6,7 @@ def index(request):
     user_id = request.session.get('active_user_id')
 
     data = {
-        "user" : Users.objects.get(id=user_id),
+        "user" : User.objects.get(id=user_id),
         }
 
     return render(request, 'main/index.html', data)

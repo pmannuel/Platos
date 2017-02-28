@@ -4,9 +4,9 @@ from django.contrib import messages
 from .models import User, UserManager
 
 def index(request):
-    # Users.objects.all().delete()
+    # User.objects.all().delete()
     print ('*'*100)
-    print Users.objects.all()
+    print User.objects.all()
     print ('*'*100)
 
     return render(request, 'login_register/index.html')
@@ -20,9 +20,9 @@ def login(request):
         chk_email = request.POST['email']
         chk_password = request.POST['password']
 
-        if Users.objects.filter(email = chk_email).exists():
-            user_active = Users.objects.get(email = chk_email)
-            passwordMatch = Users.objects.check_password_match(chk_password, user_active.password)
+        if User.objects.filter(email = chk_email).exists():
+            user_active = User.objects.get(email = chk_email)
+            passwordMatch = User.objects.check_password_match(chk_password, user_active.password)
             if passwordMatch:
                 request.session['active_user_id'] = user_active.id
                 return redirect(reverse('main:index'))
@@ -41,17 +41,17 @@ def register(request):
         password = request.POST['password']
         cpassword = request.POST['cpassword']
 
-        error_messages = Users.objects.register(firstname, lastname, email, password, cpassword)
+        error_messages = User.objects.register(firstname, lastname, email, password, cpassword)
 
         if error_messages == []:
-            diffpassword = Users.objects.encrypt(password)
-            Users.objects.create(
+            diffpassword = User.objects.encrypt(password)
+            User.objects.create(
                 firstname = firstname,
                 lastname = lastname,
                 email = email,
                 password = diffpassword
             )
-            user_active = Users.objects.get(email = email)
+            user_active = User.objects.get(email = email)
             request.session['active_user_id'] = user_active.id
 
             return redirect(reverse('main:index'))

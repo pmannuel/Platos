@@ -9,7 +9,7 @@ class Profile(models.Model):
     company = models.CharField(max_length=255)
     street_number = models.CharField(max_length=255)
     route = models.CharField(max_length=255)
-    city = models.CharField(max_length=255)
+    c = models.CharField(max_length=255)
     state = models.CharField(max_length=255)
     postal_code = models.CharField(max_length=255)
     about_me = models.CharField(max_length=500)

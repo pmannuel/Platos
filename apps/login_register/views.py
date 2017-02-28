@@ -4,11 +4,6 @@ from django.contrib import messages
 from .models import User, UserManager
 
 def index(request):
-    # User.objects.all().delete()
-    # print ('*'*100)
-    # print User.objects.all()
-    # print ('*'*100)
-
     return render(request, 'login_register/index.html')
 
 def logout(request):

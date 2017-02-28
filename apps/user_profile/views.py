@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
-from .models import Users, UsersManager, Profiles
+from .models import User, UserManager, Profile
 
 def index(request, user_id):
     user_id = request.session.get('active_user_id')

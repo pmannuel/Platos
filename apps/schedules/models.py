@@ -14,38 +14,45 @@ class ScheduleManager(models.Manager):
         sun = []
         i = 0
         while(i<=23):
-            if Schedule.objects.filter(mon_schedule__(i)_(i+1)).filter(user = session['user_id']) == True:
-                mon.append(Schedule.objects.filter(mon_schedule__(i)_(i+1).exclude(user = request.session['user_id'])))
+            param = 'mon_schedule__' + '_' + i + 'to' + '_' + i+1
+            if Schedule.objects.filter(param).filter(user = session['user_id']) == True:
+                mon.append(Schedule.objects.filter(param).exclude(user = request.session['user_id']))
             i += 1
         i = 0
         while(i<=23):
-            if Schedule.objects.filter(tue_schedule__(i)_(i+1)).filter(user = request.session['user_id']) == True:
-                tue.append(Schedule.objects.filter(tue_schedule__(i)_(i+1).exclude(user = request.session['user_id'])))
+            param = 'tue_schedule__' + '_' + i + 'to' + '_' + i+1
+            if Schedule.objects.filter(param).filter(user = request.session['user_id']) == True:
+                tue.append(Schedule.objects.filter(param).exclude(user = request.session['user_id']))
             i += 1
         i = 0
         while(i<=23):
-            if Schedule.objects.filter(wed_schedule__(i)_(i+1)).filter(user = request.session['user_id']) == True:
-                wed.append(Schedule.objects.filter(wed_schedule__(i)_(i+1).exclude(user = request.session['user_id'])))
+            param = 'wed_schedule__' + '_' + i + 'to' + '_' + i+1
+            if Schedule.objects.filter(param).filter(user = request.session['user_id']) == True:
+                wed.append(Schedule.objects.filter(param).exclude(user = request.session['user_id']))
             i += 1
         i = 0
         while(i<=23):
-            if Schedule.objects.filter(thu_schedule__(i)_(i+1)).filter(user = request.session['user_id']) == True:
-                thu.append(Schedule.objects.filter(thu_schedule__(i)_(i+1).exclude(user = request.session['user_id'])))
+            param = 'thu_schedule__' + '_' + i + 'to' + '_' + i+1
+            if Schedule.objects.filter(param).filter(user = request.session['user_id']) == True:
+                thu.append(Schedule.objects.filter(param).exclude(user = request.session['user_id']))
             i += 1
         i = 0
         while(i<=23):
-            if Schedule.objects.filter(fri_schedule__(i)_(i+1)).filter(user = request.session['user_id']) == True:
-                fri.append(Schedule.objects.filter(fri_schedule__(i)_(i+1).exclude(user = request.session['user_id'])))
+            param = 'fri_schedule__' + '_' + i + 'to' + '_' + i+1
+            if Schedule.objects.filter(param).filter(user = request.session['user_id']) == True:
+                fri.append(Schedule.objects.filter(param).exclude(user = request.session['user_id']))
             i += 1
         i = 0
         while(i<=23):
-            if Schedule.objects.filter(sat_schedule__(i)_(i+1)).filter(user = request.session['user_id']) == True:
-                sat.append(Schedule.objects.filter(sat_schedule__(i)_(i+1).exclude(user = request.session['user_id'])))
+            param = 'sat_schedule__' + '_' + i + 'to' + '_' + i+1
+            if Schedule.objects.filter(param).filter(user = request.session['user_id']) == True:
+                sat.append(Schedule.objects.filter(param).exclude(user = request.session['user_id']))
             i += 1
         i = 0
         while(i<=23):
-            if Schedule.objects.filter(sun_schedule__(i)_(i+1)).filter(user = request.session['user_id']) == True:
-                sun.append(Schedule.objects.filter(sun_schedule__(i)_(i+1).exclude(user = request.session['user_id'])))
+            param = 'sun_schedule__' + '_' + i + 'to' + '_' + i+1
+            if Schedule.objects.filter(param).filter(user = request.session['user_id']) == True:
+                sun.append(Schedule.objects.filter(param).exclude(user = request.session['user_id']))
             i += 1
         matches = {
         'mon': mon,
@@ -57,7 +64,31 @@ class ScheduleManager(models.Manager):
         'sun':sun
         }
         return matches
-
+class Day(models.Model):
+    _9to10 = models.BooleanField(False)
+    _10to11 = models.BooleanField(False)
+    _11to12 = models.BooleanField(False)
+    _12to13 = models.BooleanField(False)
+    _13to14 = models.BooleanField(False)
+    _14to15 = models.BooleanField(False)
+    _15to16 = models.BooleanField(False)
+    _16to17 = models.BooleanField(False)
+    _17to18 = models.BooleanField(False)
+    _18to19 = models.BooleanField(False)
+    _19to20 = models.BooleanField(False)
+    _20to21 = models.BooleanField(False)
+    _21to22 = models.BooleanField(False)
+    _22to23 = models.BooleanField(False)
+    _23to0 = models.BooleanField(False)
+    _0to1 = models.BooleanField(False)
+    _1to2 = models.BooleanField(False)
+    _2to3 = models.BooleanField(False)
+    _3to4 = models.BooleanField(False)
+    _4to5 = models.BooleanField(False)
+    _5to6 = models.BooleanField(False)
+    _6to7 = models.BooleanField(False)
+    _7to8 = models.BooleanField(False)
+    _8to9 = models.BooleanField(False)
 
 class Schedule(models.Model):
     user = models.ForeignKey(User, related_name = 'schedule_user')
@@ -69,31 +100,3 @@ class Schedule(models.Model):
     sat = models.ForeignKey(Day, related_name = 'sat_schedule')
     sun = models.ForeignKey(Day, related_name = 'sun_schedule')
     objects = ScheduleManager()
-
-
-
-class Day(models.Model):
-    9_10 = models.BooleanField(False)
-    10_11 = models.BooleanField(False)
-    11_12 = models.BooleanField(False)
-    12_13 = models.BooleanField(False)
-    13_14 = models.BooleanField(False)
-    14_15 = models.BooleanField(False)
-    15_16 = models.BooleanField(False)
-    16_17 = models.BooleanField(False)
-    17_18 = models.BooleanField(False)
-    18_19 = models.BooleanField(False)
-    19_20 = models.BooleanField(False)
-    20_21 = models.BooleanField(False)
-    21_22 = models.BooleanField(False)
-    22_23 = models.BooleanField(False)
-    23_0 = models.BooleanField(False)
-    0_1 = models.BooleanField(False)
-    1_2 = models.BooleanField(False)
-    2_3 = models.BooleanField(False)
-    3_4 = models.BooleanField(False)
-    4_5 = models.BooleanField(False)
-    5_6 = models.BooleanField(False)
-    6_7 = models.BooleanField(False)
-    7_8 = models.BooleanField(False)
-    8_9 = models.BooleanField(False)

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
 from django.contrib import messages
-from .models import Users, UsersManager
+from .models import User, UserManager
 
 def index(request):
     # Users.objects.all().delete()

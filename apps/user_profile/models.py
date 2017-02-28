@@ -1,9 +1,9 @@
 from __future__ import unicode_literals
 from django.db import models
-from ..login_register.models import Users, UsersManager
+from ..login_register.models import User, UserManager
 
-class Profiles(models.Model):
-    user = models.ForeignKey(Users, related_name="user_profile")
+class Profile(models.Model):
+    user = models.ForeignKey(User, related_name="user_profile")
     birthday = models.DateField()
     address = models.CharField(max_length=255)
     occupation = models.CharField(max_length=255)

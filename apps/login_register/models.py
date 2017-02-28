@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 from django.db import models
 import re, bcrypt
 
-class UsersManager(models.Manager):
+class UserManager(models.Manager):
       def check_password_match(self, chk_password, correctp):
           return correctp == bcrypt.hashpw(chk_password.encode(), correctp.encode())
 
@@ -43,4 +43,4 @@ class User(models.Model):
     email = models.CharField(max_length=45)
     password = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add = True)
-    objects = UsersManager()
+    objects = UserManager()

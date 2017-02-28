@@ -18,15 +18,10 @@
             <h1>Edit Profile</h1>
             <form class="user_profile" action="{%url 'user_profile:edit_profile' user_id=user.id%}" method="post">
                 {% csrf_token %}
-                <input type="submit" name="submit" value="Update Profile"></form>
                 <p>Profile Picture</p>
-                <form action="" method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <p>
-                        <input id="id_image" type="file" class="" name="image">
-                    </p>
-                    <input type="submit" value="Update Profile Picture" />
-                </form>
+                <p>
+                    <input id="id_image" type="file" class="" name="image">
+                </p>
                 <p>First name</p><input type="text" name="first_name" value="{{user.firstname}}">
                 <p>Last name</p><input type="text" name="last_name" value="{{user.lastname}}">
                 <p>Email</p><input type="text" name="email" value="{{user.email}}">
@@ -66,6 +61,7 @@
                 </table>
                 <p>About me</p>
                 <textarea name="about_me" rows="8" cols="80"></textarea>
+                <input type="submit" name="submit" value="Update Profile">
             </form>
         </div>
     </div>

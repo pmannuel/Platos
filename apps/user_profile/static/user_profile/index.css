@@ -27,12 +27,3 @@ div.nav-wrapper{
     color: #15253B;
     box-shadow: inset 2px -5px 11px #344771;
 }
-
-#logo{
-    display: flex;
-    align-items: center;
-    width: 100%;
-    color: white;
-    font-size: 1.5em;
-    margin-left: 1.5vh;
-}

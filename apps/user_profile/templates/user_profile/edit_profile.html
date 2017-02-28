@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{user.firstname}} {{user.lastname}}</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'user_profile/index.css' %}">
+</head>
+
+<body>
+    <div id="wrapper">
+        <div class="nav-wrapper">
+        </div>
+        <div id="body">
+            <h1>Edit Profile</h1>
+            <hr>
+            Profile Picture
+            First name
+            Last name
+            Occupation
+            Company/School
+            Email
+            Country
+            Address
+        </div>
+    </div>
+</body>
+
+</html>

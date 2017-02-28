@@ -13,6 +13,7 @@ def index(request, user_id):
 
 def edit_profile(request, user_id):
     user_id = request.session.get('active_user_id')
+    active_user = Users.objects.get(id=user_id),
 
     data = {
         "user" : Users.objects.get(id=user_id),

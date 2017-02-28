@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
 from .models import User, UserManager, Profile
+from ..schedules.models import Schedule
 
 def index(request, user_id):
     user_id = request.session.get('active_user_id')
@@ -10,6 +11,12 @@ def index(request, user_id):
         }
 
     return render(request, 'user_profile/index.html', data)
+
+def view_times(request):
+    context = {
+    'schedule': Schedule.objects.get(user = request.session['active_user_id'])
+    }
+    return render(request, 'user_profile/edit_times.html', context)
 
 def edit_profile(request, user_id):
     user_id = request.session.get('active_user_id')

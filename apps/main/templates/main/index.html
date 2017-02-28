@@ -34,14 +34,14 @@
         </nav>
         <div id="body">
             <h1>Homepage: {{user.firstname}} {{user.lastname}}</h1>
+            {% if flag %}
             <h3>{{user.firstname}} is located at {{profile.city}} </h3>
-            <hr>
-            <div id="matches">
+            {% else %}
+                <h3>Your info is incomplete!</h3>
+                <h3>Would you like to update?</h3>
+                <h3><a href="{%url 'user_profile:edit_profile' user_id=user.id %}">Take There!</a></h3>
+            {% endif %}
 
-            </div>
-            {%for other_user in other_users%}
-            <p>{{other_user.user.firstname}} | located at {{other_user.city}}</p>
-            {%endfor%}
         </div>
         <div id="footer">
 

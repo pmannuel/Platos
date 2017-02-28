@@ -5,11 +5,6 @@ from .models import User, UserManager
 from ..schedules.models import Schedule, Day
 
 def index(request):
-    # User.objects.all().delete()
-    # print ('*'*100)
-    # print User.objects.all()
-    # print ('*'*100)
-
     return render(request, 'login_register/index.html')
 
 def logout(request):

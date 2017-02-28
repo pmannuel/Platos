@@ -7,8 +7,8 @@ def index(request):
 
     data = {
         "user" : User.objects.get(id=user_id),
-        "profile" : Profile.objects.get(user__id=user_id),
-        "other_users" : Profile.objects.all().exclude(user__id=user_id),
+        # "profile" : Profile.objects.get(user__id=user_id),
+        # "other_users" : Profile.objects.all().exclude(user__id=user_id),
         }
 
     return render(request, 'main/index.html', data)

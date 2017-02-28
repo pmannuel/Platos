@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{user.firstname}} {{user.lastname}}</title>
     {% load staticfiles %}
-    <link rel="stylesheet" href="{% static 'user_profile/index.css' %}">
+    <link rel="stylesheet" href="{% static 'user_profile/google_places_api.css' %}">
 </head>
 
 <body>
@@ -16,17 +16,122 @@
         </div>
         <div id="body">
             <h1>Edit Profile</h1>
-            <hr>
-            Profile Picture
-            First name
-            Last name
-            Occupation
-            Company/School
-            Email
-            Country
-            Address
+            <form class="user_profile" action="{%url 'user_profile:edit_profile' user_id=user.id%}" method="post">
+                {% csrf_token %}
+                <p>Profile Picture</p>
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <p>
+                        <input id="id_image" type="file" class="" name="image">
+                    </p>
+                    <input type="submit" value="Update Profile Picture" />
+                </form>
+                <p>First name</p><input type="text" name="first_name" value="{{user.firstname}}">
+                <p>Last name</p><input type="text" name="last_name" value="{{user.lastname}}">
+                <p>Email</p><input type="text" name="email" value="{{user.email}}">
+                <p>Birthday</p><input type="text" name="birthday" value="">
+                <p>Occupation</p><input type="text" name="occupation" value="">
+                <p>Company/School</p><input type="text" name="company" value="">
+                <p>Address</p>
+                <div id="locationField">
+                    <input id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text"></input>
+                </div>
+                <table id="address">
+                    <tr>
+                        <td class="label">Street address</td>
+                        <td class="slimField"><input class="field" name="street_number" id="street_number" disabled="true"></input>
+                        </td>
+                        <td class="wideField" colspan="2"><input class="field" name="route" id="route" disabled="true"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">City</td>
+                        <td class="wideField" colspan="3"><input class="field" name="city" id="locality" disabled="true"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">State</td>
+                        <td class="slimField"><input class="field" name="state" id="administrative_area_level_1" disabled="true"></input>
+                        </td>
+                        <td class="label">Zip code</td>
+                        <td class="wideField"><input class="field" name="postal_code" id="postal_code" disabled="true"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">Country</td>
+                        <td class="wideField" colspan="3"><input class="field" id="country" disabled="true"></input>
+                        </td>
+                    </tr>
+                </table>
+                <input type="submit" name="submit" value="Update Profile"></form>
+            </form>
         </div>
     </div>
+    <script>
+        var placeSearch, autocomplete;
+        var componentForm = {
+            street_number: 'short_name',
+            route: 'long_name',
+            locality: 'long_name',
+            administrative_area_level_1: 'short_name',
+            country: 'long_name',
+            postal_code: 'short_name'
+        };
+
+        function initAutocomplete() {
+            // Create the autocomplete object, restricting the search to geographical
+            // location types.
+            autocomplete = new google.maps.places.Autocomplete(
+                /** @type {!HTMLInputElement} */
+                (document.getElementById('autocomplete')), {
+                    types: ['geocode']
+                });
+
+            // When the user selects an address from the dropdown, populate the address
+            // fields in the form.
+            autocomplete.addListener('place_changed', fillInAddress);
+        }
+
+        function fillInAddress() {
+            // Get the place details from the autocomplete object.
+            var place = autocomplete.getPlace();
+            console.log(place);
+
+            for (var component in componentForm) {
+                document.getElementById(component).value = '';
+                document.getElementById(component).disabled = false;
+            }
+
+            // Get each component of the address from the place details
+            // and fill the corresponding field on the form.
+            for (var i = 0; i < place.address_components.length; i++) {
+                var addressType = place.address_components[i].types[0];
+                if (componentForm[addressType]) {
+                    var val = place.address_components[i][componentForm[addressType]];
+                    document.getElementById(addressType).value = val;
+                }
+            }
+        }
+
+        // Bias the autocomplete object to the user's geographical location,
+        // as supplied by the browser's 'navigator.geolocation' object.
+        function geolocate() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var geolocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    var circle = new google.maps.Circle({
+                        center: geolocation,
+                        radius: position.coords.accuracy
+                    });
+                    autocomplete.setBounds(circle.getBounds());
+                });
+            }
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBj4eaE79fE1cqdaq1XZALhzxCpKPd2F2I&libraries=places&callback=initAutocomplete" async defer></script>
 </body>
 
 </html>

@@ -37,7 +37,7 @@ class UsersManager(models.Manager):
 
           return error_messages
 
-class User(models.Model):
+class Users(models.Model):
     firstname = models.CharField(max_length=45)
     lastname = models.CharField(max_length=45, default="poopyhead")
     email = models.CharField(max_length=45)

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from .models import User, UserManager
+from ..schedules.models import Schedule, Day
 
 def index(request):
     return render(request, 'login_register/index.html')
@@ -48,6 +49,15 @@ def register(request):
             )
             user_active = User.objects.get(email = email)
             request.session['active_user_id'] = user_active.id
+            mon = Day.objects.create()
+            tue = Day.objects.create()
+            wed = Day.objects.create()
+            thu = Day.objects.create()
+            fri = Day.objects.create()
+            sat = Day.objects.create()
+            sun = Day.objects.create()
+            schedule = Schedule.objects.create(user = user_active, mon = mon, tue = tue, wed = wed, thu = thu, fri = fri, sat = sat, sun = sun)
+
 
             return redirect(reverse('main:index'))
         else:

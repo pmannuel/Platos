@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Select Times</title>
+    <style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg .tg-baqh{text-align:center;vertical-align:top;font-weight: bold;}
+.tg .tg-fiaw{font-weight:bold;font-size:100%;background-color:#000000;color:#ffffff;text-align:center;vertical-align:top}
+.tg .tg-m1tb{font-weight:bold;background-color:#000000;color:#ffffff;text-align:center;vertical-align:top}
+</style>
+</head>
+<body>
+    <form action="{% url 'user_profile:update_times'%}" method = "post">
+        {% csrf_token %}
+    <table class="tg">
+  <tr>
+    <th class="tg-m1tb"></th>
+    <th class="tg-m1tb">Monday</th>
+    <th class="tg-m1tb">Tuesday</th>
+    <th class="tg-fiaw">Wednesday</th>
+    <th class="tg-m1tb">Thursday</th>
+    <th class="tg-m1tb">Friday</th>
+    <th class="tg-m1tb">Saturday</th>
+    <th class="tg-m1tb">Sunday</th>
+  </tr>
+  <tr>
+    <td class="tg-baqh">12AM - 1AM</td>
+    {% if schedule.mon.h0to1 %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon0to1" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon0to1"></td>
+    {% endif %}
+    {% if schedule.tue.h0to1 %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue0to1" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue0to1"></td>
+    {% endif %}
+    {% if schedule.wed.h0to1 %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed0to1" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed0to1"></td>
+    {% endif %}
+    {% if schedule.thu.h0to1 %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu0to1" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu0to1"></td>
+    {% endif %}
+    {% if schedule.fri.h0to1 %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri0to1" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri0to1"></td>
+    {% endif %}
+    {% if schedule.sat.h0to1 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat0to1" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat0to1"></td>
+    {% endif %}
+    {% if schedule.sun.h0to1 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun0to1" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun0to1"></td>
+    {% endif %}
+  </tr>
+  <tr>
+    <td class="tg-baqh">1AM - 2AM</td>
+    {% if schedule.mon.h1to2 %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon1to2" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon1to2"></td>
+    {% endif %}
+    {% if schedule.tue.h1to2 %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue1to2" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue1to2"></td>
+    {% endif %}
+    {% if schedule.wed.h1to2 %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed1to2" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed1to2"></td>
+    {% endif %}
+    {% if schedule.thu.h1to2 %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu1to2" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu1to2"></td>
+    {% endif %}
+    {% if schedule.fri.h1to2 %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri1to2" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri1to2"></td>
+    {% endif %}
+    {% if schedule.sat.h1to2 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat1to2" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat1to2"></td>
+    {% endif %}
+    {% if schedule.sun.h1to2 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun1to2" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun1to2"></td>
+    {% endif %}
+  </tr>
+  <tr>
+    <td class="tg-baqh">2AM - 3AM</td>
+    {% if schedule.mon.h2to3 %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon2to3" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon2to3"></td>
+    {% endif %}
+    {% if schedule.tue.h2to3 %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue2to3" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue2to3"></td>
+    {% endif %}
+    {% if schedule.wed.h2to3 %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed2to3" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed2to3"></td>
+    {% endif %}
+    {% if schedule.thu.h2to3 %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu2to3" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu2to3"></td>
+    {% endif %}
+    {% if schedule.fri.h2to3 %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri2to3" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri2to3"></td>
+    {% endif %}
+    {% if schedule.sat.h2to3 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat2to3" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat2to3"></td>
+    {% endif %}
+    {% if schedule.sun.h2to3 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun2to3" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun2to3"></td>
+    {% endif %}
+  </tr>
+  <tr>
+    <td class="tg-baqh">3AM - 4AM</td>
+    {% if schedule.mon.h3to4 %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon3to4" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon3to4"></td>
+    {% endif %}
+    {% if schedule.tue.h3to4 %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue3to4" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue3to4"></td>
+    {% endif %}
+    {% if schedule.wed.h3to4 %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed3to4" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed3to4"></td>
+    {% endif %}
+    {% if schedule.thu.h3to4 %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu3to4" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu3to4"></td>
+    {% endif %}
+    {% if schedule.fri.h3to4 %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri3to4" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri3to4"></td>
+    {% endif %}
+    {% if schedule.sat.h3to4 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat3to4" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat3to4"></td>
+    {% endif %}
+    {% if schedule.sun.h3to4 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun3to4" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun3to4"></td>
+    {% endif %}
+  </tr>
+  <tr>
+    <td class="tg-baqh">4AM - 5AM</td>
+    {% if schedule.mon.h4to5 %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon4to5" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon4to5"></td>
+    {% endif %}
+    {% if schedule.tue.h4to5 %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue4to5" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue4to5"></td>
+    {% endif %}
+    {% if schedule.wed.h4to5 %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed4to5" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed4to5"></td>
+    {% endif %}
+    {% if schedule.thu.h4to5 %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu4to5" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu4to5"></td>
+    {% endif %}
+    {% if schedule.fri.h4to5 %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri4to5" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri4to5"></td>
+    {% endif %}
+    {% if schedule.sat.h4to5 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat4to5" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat4to5"></td>
+    {% endif %}
+    {% if schedule.sun.h4to5 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun4to5" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun4to5"></td>
+    {% endif %}
+  </tr>
+  <tr>
+    <td class="tg-baqh">5AM - 6AM</td>
+    {% if schedule.mon.h5to6 %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon5to6" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon5to6"></td>
+    {% endif %}
+    {% if schedule.tue.h5to6 %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue5to6" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue5to6"></td>
+    {% endif %}
+    {% if schedule.wed.h5to6 %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed5to6" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed5to6"></td>
+    {% endif %}
+    {% if schedule.thu.h5to6 %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu5to6" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu5to6"></td>
+    {% endif %}
+    {% if schedule.fri.h5to6 %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri5to6" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri5to6"></td>
+    {% endif %}
+    {% if schedule.sat.h5to6 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat5to6" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat5to6"></td>
+    {% endif %}
+    {% if schedule.sun.h5to6 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun5to6" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun5to6"></td>
+    {% endif %}
+  </tr>
+  <tr>
+    <td class="tg-baqh">6AM - 7AM</td>
+    {% if schedule.mon.h6to7 %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon6to7" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon6to7"></td>
+    {% endif %}
+    {% if schedule.tue.h6to7 %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue6to7" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue6to7"></td>
+    {% endif %}
+    {% if schedule.wed.h6to7 %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed6to7" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed6to7"></td>
+    {% endif %}
+    {% if schedule.thu.h6to7 %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu6to7" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu6to7"></td>
+    {% endif %}
+    {% if schedule.fri.h6to7 %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri6to7" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri6to7"></td>
+    {% endif %}
+    {% if schedule.sat.h6to7 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat6to7" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat6to7"></td>
+    {% endif %}
+    {% if schedule.sun.h6to7 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun6to7" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun6to7"></td>
+    {% endif %}
+  </tr>
+  <tr>
+    <td class="tg-baqh">7AM - 8AM</td>
+    {% if schedule.mon.h7to8 %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon7to8" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon7to8"></td>
+    {% endif %}
+    {% if schedule.tue.h7to8 %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue7to8" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue7to8"></td>
+    {% endif %}
+    {% if schedule.wed.h7to8 %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed7to8" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed7to8"></td>
+    {% endif %}
+    {% if schedule.thu.h7to8 %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu7to8" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu7to8"></td>
+    {% endif %}
+    {% if schedule.fri.h7to8 %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri7to8" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri7to8"></td>
+    {% endif %}
+    {% if schedule.sat.h7to8 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat7to8" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat7to8"></td>
+    {% endif %}
+    {% if schedule.sun.h7to8 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun7to8" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun7to8"></td>
+    {% endif %}
+  </tr>
+  <tr>
+    <td class="tg-baqh">8AM - 9AM</td>
+    {% if schedule.mon.h8to9 %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon8to9" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon8to9"></td>
+    {% endif %}
+    {% if schedule.tue.h8to9 %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue8to9" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue8to9"></td>
+    {% endif %}
+    {% if schedule.wed.h8to9 %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed8to9" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed8to9"></td>
+    {% endif %}
+    {% if schedule.thu.h8to9 %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu8to9" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu8to9"></td>
+    {% endif %}
+    {% if schedule.fri.h8to9 %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri8to9" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri8to9"></td>
+    {% endif %}
+    {% if schedule.sat.h8to9 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat8to9" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat8to9"></td>
+    {% endif %}
+    {% if schedule.sun.h8to9 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun8to9" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun8to9"></td>
+    {% endif %}
+  </tr>
+  <tr>
+    <td class="tg-baqh">9AM - 10AM</td>
+    {% if schedule.mon.h9to10 %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon9to10" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon9to10"></td>
+    {% endif %}
+    {% if schedule.tue.h9to10 %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue9to10" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue9to10"></td>
+    {% endif %}
+    {% if schedule.wed.h9to10 %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed9to10" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed9to10"></td>
+    {% endif %}
+    {% if schedule.thu.h9to10 %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu9to10" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu9to10"></td>
+    {% endif %}
+    {% if schedule.fri.h9to10 %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri9to10" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri9to10"></td>
+    {% endif %}
+    {% if schedule.sat.h9to10 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat9to10" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat9to10"></td>
+    {% endif %}
+    {% if schedule.sun.h9to10 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun9to10" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun9to10"></td>
+    {% endif %}
+  </tr>
+  <tr>
+    <td class="tg-baqh">10AM - 11AM</td>
+    {% if schedule.mon.h10to11 %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon10to11" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon10to11"></td>
+    {% endif %}
+    {% if schedule.tue.h10to11 %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue10to11" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue10to11"></td>
+    {% endif %}
+    {% if schedule.wed.h10to11 %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed10to11" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed10to11"></td>
+    {% endif %}
+    {% if schedule.thu.h10to11 %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu10to11" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu10to11"></td>
+    {% endif %}
+    {% if schedule.fri.h10to11 %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri10to11" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri10to11"></td>
+    {% endif %}
+    {% if schedule.sat.h10to11 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat10to11" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat10to11"></td>
+    {% endif %}
+    {% if schedule.sun.h10to11 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun10to11" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun10to11"></td>
+    {% endif %}
+  </tr>
+  <tr>
+    <td class="tg-baqh">11AM - 12PM</td>
+    {% if schedule.mon.h11to12 %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon11to12" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon11to12"></td>
+    {% endif %}
+    {% if schedule.tue.h11to12 %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue11to12" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue11to12"></td>
+    {% endif %}
+    {% if schedule.wed.h11to12 %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed11to12" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed11to12"></td>
+    {% endif %}
+    {% if schedule.thu.h11to12 %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu11to12" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu11to12"></td>
+    {% endif %}
+    {% if schedule.fri.h11to12 %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri11to12" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri11to12"></td>
+    {% endif %}
+    {% if schedule.sat.h11to12 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat11to12" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat11to12"></td>
+    {% endif %}
+    {% if schedule.sun.h11to12 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun11to12" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun11to12"></td>
+    {% endif %}
+  </tr>
+  <tr>
+    <td class="tg-baqh">12PM - 1PM</td>
+    {% if schedule.mon.h12to13 %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon12to13" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon12to13"></td>
+    {% endif %}
+    {% if schedule.tue.h12to13 %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue12to13" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue12to13"></td>
+    {% endif %}
+    {% if schedule.wed.h12to13 %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed12to13" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed12to13"></td>
+    {% endif %}
+    {% if schedule.thu.h12to13 %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu12to13" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu12to13"></td>
+    {% endif %}
+    {% if schedule.fri.h12to13 %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri12to13" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri12to13"></td>
+    {% endif %}
+    {% if schedule.sat.h12to13 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat12to13" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat12to13"></td>
+    {% endif %}
+    {% if schedule.sun.h12to13 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun12to13" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun12to13"></td>
+    {% endif %}
+  </tr>
+  <tr>
+    <td class="tg-baqh">1PM - 2PM</td>
+    {% if schedule.mon.h13to14 %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon13to14" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon13to14"></td>
+    {% endif %}
+    {% if schedule.tue.h13to14 %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue13to14" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue13to14"></td>
+    {% endif %}
+    {% if schedule.wed.h13to14 %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed13to14" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed13to14"></td>
+    {% endif %}
+    {% if schedule.thu.h13to14 %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu13to14" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu13to14"></td>
+    {% endif %}
+    {% if schedule.fri.h13to14 %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri13to14" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri13to14"></td>
+    {% endif %}
+    {% if schedule.sat.h13to14 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat13to14" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat13to14"></td>
+    {% endif %}
+    {% if schedule.sun.h13to14 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun13to14" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun13to14"></td>
+    {% endif %}
+  </tr>
+  <tr>
+    <td class="tg-baqh">2PM - 3PM</td>
+    {% if schedule.mon.h14to15 %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon14to15" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon14to15"></td>
+    {% endif %}
+    {% if schedule.tue.h14to15 %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue14to15" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue14to15"></td>
+    {% endif %}
+    {% if schedule.wed.h14to15 %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed14to15" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed14to15"></td>
+    {% endif %}
+    {% if schedule.thu.h14to15 %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu14to15" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu14to15"></td>
+    {% endif %}
+    {% if schedule.fri.h14to15 %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri14to15" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri14to15"></td>
+    {% endif %}
+    {% if schedule.sat.h14to15 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat14to15" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat14to15"></td>
+    {% endif %}
+    {% if schedule.sun.h14to15 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun14to15" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun14to15"></td>
+    {% endif %}
+  </tr>
+  <tr>
+    <td class="tg-baqh">3PM - 4PM</td>
+    {% if schedule.mon.h15to16 %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon15to16" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon15to16"></td>
+    {% endif %}
+    {% if schedule.tue.h15to16 %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue15to16" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue15to16"></td>
+    {% endif %}
+    {% if schedule.wed.h15to16 %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed15to16" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed15to16"></td>
+    {% endif %}
+    {% if schedule.thu.h15to16 %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu15to16" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu15to16"></td>
+    {% endif %}
+    {% if schedule.fri.h15to16 %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri15to16" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri15to16"></td>
+    {% endif %}
+    {% if schedule.sat.h15to16 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat15to16" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat15to16"></td>
+    {% endif %}
+    {% if schedule.sun.h15to16 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun15to16" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun15to16"></td>
+    {% endif %}
+  </tr>
+  <tr>
+    <td class="tg-baqh">4PM - 5PM</td>
+    {% if schedule.mon.h16to17 %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon16to17" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon16to17"></td>
+    {% endif %}
+    {% if schedule.tue.h16to17 %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue16to17" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue16to17"></td>
+    {% endif %}
+    {% if schedule.wed.h16to17 %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed16to17" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed16to17"></td>
+    {% endif %}
+    {% if schedule.thu.h16to17 %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu16to17" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu16to17"></td>
+    {% endif %}
+    {% if schedule.fri.h16to17 %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri16to17" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri16to17"></td>
+    {% endif %}
+    {% if schedule.sat.h16to17 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat16to17" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat16to17"></td>
+    {% endif %}
+    {% if schedule.sun.h16to17 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun16to17" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun16to17"></td>
+    {% endif %}
+  </tr>
+  <tr>
+    <td class="tg-baqh">5PM - 6PM</td>
+    {% if schedule.mon.h17to18 %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon17to18" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon17to18"></td>
+    {% endif %}
+    {% if schedule.tue.h17to18 %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue17to18" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue17to18"></td>
+    {% endif %}
+    {% if schedule.wed.h17to18 %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed17to18" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed17to18"></td>
+    {% endif %}
+    {% if schedule.thu.h17to18 %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu17to18" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu17to18"></td>
+    {% endif %}
+    {% if schedule.fri.h17to18 %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri17to18" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri17to18"></td>
+    {% endif %}
+    {% if schedule.sat.h17to18 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat17to18" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat17to18"></td>
+    {% endif %}
+    {% if schedule.sun.h17to18 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun17to18" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun17to18"></td>
+    {% endif %}
+  </tr>
+  <tr>
+    <td class="tg-baqh">6PM - 7PM</td>
+    {% if schedule.mon.h18to19 %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon18to19" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon18to19"></td>
+    {% endif %}
+    {% if schedule.tue.h18to19 %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue18to19" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue18to19"></td>
+    {% endif %}
+    {% if schedule.wed.h18to19 %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed18to19" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed18to19"></td>
+    {% endif %}
+    {% if schedule.thu.h18to19 %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu18to19" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu18to19"></td>
+    {% endif %}
+    {% if schedule.fri.h18to19 %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri18to19" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri18to19"></td>
+    {% endif %}
+    {% if schedule.sat.h18to19 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat18to19" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat18to19"></td>
+    {% endif %}
+    {% if schedule.sun.h18to19 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun18to19" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun18to19"></td>
+    {% endif %}
+  </tr>
+  <tr>
+    <td class="tg-baqh">7PM - 8PM</td>
+    {% if schedule.mon.h19to20 %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon19to20" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon19to20"></td>
+    {% endif %}
+    {% if schedule.tue.h19to20 %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue19to20" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue19to20"></td>
+    {% endif %}
+    {% if schedule.wed.h19to20 %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed19to20" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed19to20"></td>
+    {% endif %}
+    {% if schedule.thu.h19to20 %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu19to20" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu19to20"></td>
+    {% endif %}
+    {% if schedule.fri.h19to20 %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri19to20" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri19to20"></td>
+    {% endif %}
+    {% if schedule.sat.h19to20 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat19to20" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat19to20"></td>
+    {% endif %}
+    {% if schedule.sun.h19to20 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun19to20" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun19to20"></td>
+    {% endif %}
+  </tr>
+  <tr>
+    <td class="tg-baqh">8PM - 9PM</td>
+    {% if schedule.mon.h20to21 %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon20to21" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon20to21"></td>
+    {% endif %}
+    {% if schedule.tue.h20to21 %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue20to21" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue20to21"></td>
+    {% endif %}
+    {% if schedule.wed.h20to21 %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed20to21" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed20to21"></td>
+    {% endif %}
+    {% if schedule.thu.h20to21 %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu20to21" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu20to21"></td>
+    {% endif %}
+    {% if schedule.fri.h20to21 %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri20to21" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri20to21"></td>
+    {% endif %}
+    {% if schedule.sat.h20to21 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat20to21" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat20to21"></td>
+    {% endif %}
+    {% if schedule.sun.h20to21 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun20to21" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun20to21"></td>
+    {% endif %}
+  </tr>
+  <tr>
+    <td class="tg-baqh">9PM - 10PM</td>
+    {% if schedule.mon.h21to22 %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon21to22" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon21to22"></td>
+    {% endif %}
+    {% if schedule.tue.h21to22 %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue21to22" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue21to22"></td>
+    {% endif %}
+    {% if schedule.wed.h21to22 %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed21to22" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed21to22"></td>
+    {% endif %}
+    {% if schedule.thu.h21to22 %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu21to22" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu21to22"></td>
+    {% endif %}
+    {% if schedule.fri.h21to22 %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri21to22" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri21to22"></td>
+    {% endif %}
+    {% if schedule.sat.h21to22 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat21to22" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat21to22"></td>
+    {% endif %}
+    {% if schedule.sun.h21to22 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun21to22" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun21to22"></td>
+    {% endif %}
+  </tr>
+  <tr>
+    <td class="tg-baqh">10PM - 11PM</td>
+    {% if schedule.mon.h22to23 %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon22to23" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon22to23"></td>
+    {% endif %}
+    {% if schedule.tue.h22to23 %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue22to23" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue22to23"></td>
+    {% endif %}
+    {% if schedule.wed.h22to23 %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed22to23" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed22to23"></td>
+    {% endif %}
+    {% if schedule.thu.h22to23 %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu22to23" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu22to23"></td>
+    {% endif %}
+    {% if schedule.fri.h22to23 %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri22to23" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri22to23"></td>
+    {% endif %}
+    {% if schedule.sat.h22to23 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat22to23" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat22to23"></td>
+    {% endif %}
+    {% if schedule.sun.h22to23 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun22to23" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun22to23"></td>
+    {% endif %}
+  </tr>
+  <tr>
+    <td class="tg-baqh">11PM - 12AM</td>
+    {% if schedule.mon.h23to0 %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon23to0" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Mon23to0"></td>
+    {% endif %}
+    {% if schedule.tue.h23to0 %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue23to0" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Tue23to0"></td>
+    {% endif %}
+    {% if schedule.wed.h23to0 %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed23to0" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Wed23to0"></td>
+    {% endif %}
+    {% if schedule.thu.h23to0 %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu23to0" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Thu23to0"></td>
+    {% endif %}
+    {% if schedule.fri.h23to0 %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri23to0" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Fri23to0"></td>
+    {% endif %}
+    {% if schedule.sat.h23to0 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat23to0" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sat23to0"></td>
+    {% endif %}
+    {% if schedule.sun.h23to0 %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun23to0" checked></td>
+    {% else %}
+    <td class="tg-baqh"><input type="checkbox" name="Sun23to0"></td>
+    {% endif %}
+  </tr>
+</table>
+<input type="submit" value="Update Free Times">
+</form>
+
+
+</body>
+</html>

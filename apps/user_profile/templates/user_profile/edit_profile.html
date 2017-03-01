@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://jcrop-cdn.tapmodo.com/v2.0.0-RC1/js/Jcrop.js"></script>
+<link rel="stylesheet" href="http://jcrop-cdn.tapmodo.com/v2.0.0-RC1/css/Jcrop.css" type="text/css">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{user.firstname}} {{user.lastname}}</title>
     {% load staticfiles %}
@@ -18,13 +21,17 @@
             <h1>Edit Profile</h1>
             <p>Profile Picture</p>
             {% for u in img %}
-              <img src = "../../media/{{ u.avatar }}" />
+              <img id='profile_pic' src = "../../media/{{ u.avatar }}" />
             {% endfor %}
             {% block content %}
-            <form action="{%url 'user_profile:update_image' %}" method="POST" enctype="multipart/form-data">
+            <form action="{%url 'user_profile:view_resize' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
-            <input type="submit" value="Update Profile Picture" />
+                <input type="hidden" name="cropx" id="cropx" value="0" />
+                <input type="hidden" name="cropy" id="cropy" value="0" />
+                <input type="hidden" name="cropw" id="cropw" value="0" />
+                <input type="hidden" name="croph" id="croph" value="0" />
+                <input type="submit" value="Change Profile Picture" />
             </form>
             {% endblock %}
 

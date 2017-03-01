@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://jcrop-cdn.tapmodo.com/v2.0.0-RC1/js/Jcrop.js"></script>
+    <link rel="stylesheet" href="http://jcrop-cdn.tapmodo.com/v2.0.0-RC1/css/Jcrop.css" type="text/css">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'user_profile/google_places_api.css' %}">
+    <script type="text/javascript">
+      jQuery(function($){
+        $('#profile_pic').Jcrop({
+            setSelect: [0,0,250,250],
+            aspectRatio: 1,
+            bgColor: 'red',
+            minSize: [250, 250],
+            maxSize: [250, 250]
+        });
+        $('#profile_pic').on('cropmove cropend',function(e,s,c){
+          $('#cropx').val(c.x);
+          $('#cropy').val(c.y);
+          $('#cropw').val(c.w);
+          $('#croph').val(c.h);
+        });
+      });
+    </script>
+    <title>Resize Profile Picture</title>
+</head>
+<body>
+    <h1>Resize Profile</h1>
+    <p>New Picture</p>
+    {% for u in img %}
+      <img id='profile_pic' src = "../../media/{{ u.avatar }}" />
+    {% endfor %}
+    <form action="{%url 'user_profile:resize' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" name="cropx" id="cropx" value="0" />
+        <input type="hidden" name="cropy" id="cropy" value="0" />
+        <input type="hidden" name="cropw" id="cropw" value="0" />
+        <input type="hidden" name="croph" id="croph" value="0" />
+        <input type="submit" value="Resize Profile Picture" />
+    </form>
+
+</body>
+</html>

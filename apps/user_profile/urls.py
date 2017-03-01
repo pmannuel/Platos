@@ -6,5 +6,6 @@ urlpatterns = [
     url(r'^edit_profile/(?P<user_id>\d+)$', views.edit_profile, name='edit_profile'),
     url(r'^edit_profile/edit_times$', views.view_times, name="view_times"),
     url(r'^edit_profile/update_times$', views.update_times, name='update_times'),
-    url(r'^edit_profile/update_image$', views.image, name='update_image')
+    url(r'^edit_profile/resize_image$', views.view_resize, name='view_resize'),
+    url(r'^edit_profile/resized$', views.resize, name='resize')
 ]

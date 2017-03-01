@@ -21,7 +21,9 @@
             <h1>Edit Profile</h1>
             <p>Profile Picture</p>
             {% for u in img %}
+
               <img id='profile_pic' src = "../../media/{{ u.avatar }}" />
+
             {% endfor %}
             {% block content %}
             <form action="{%url 'user_profile:view_resize' %}" method="POST" enctype="multipart/form-data">

@@ -1,16 +1,24 @@
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
-from .models import User, UserManager, Profile
+from .models import User, UserManager, Profile, Image
 from ..schedules.models import Schedule, Day
+from .forms import ImgForm
 
 def index(request, user_id):
     user_id = request.session.get('active_user_id')
-
     data = {
         "user" : User.objects.get(id=user_id),
         }
-
     return render(request, 'user_profile/index.html', data)
+
+def image(request):
+    user_id = request.session.get('active_user_id')
+    if request.method == 'POST':
+        form = ImgForm(request.POST, request.FILES)
+        if form.is_valid():
+            delete = Image.objects.filter(user = user_id).delete()
+            update = Image.objects.filter(user = user_id).create(avatar=request.FILES['imgfile'], user_id = user_id)
+    return redirect(reverse('user_profile:edit_profile', kwargs={'user_id': user_id}))
 
 def view_times(request):
     active_user = User.objects.get(id = request.session['active_user_id'])
@@ -1076,11 +1084,12 @@ def update_times(request):
 
 def edit_profile(request, user_id):
     user_id = request.session.get('active_user_id')
-
+    form = ImgForm()
     data = {
         "user" : User.objects.get(id=user_id),
+        'form' : form,
+        'img' : Image.objects.filter(user_id = user_id)
         }
-
     if request.method == "POST":
         user_id = request.session.get('active_user_id')
 

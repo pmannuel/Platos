@@ -14,3 +14,7 @@ class Profile(models.Model):
     postal_code = models.CharField(max_length=255)
     about_me = models.CharField(max_length=500)
     created_at = models.DateTimeField(auto_now_add = True)
+
+class Image(models.Model):
+    user = models.ForeignKey(User, related_name="user_image")
+    avatar = models.ImageField(upload_to='login_register/avatar/', default='login_register/avatar/default/default.jpg')

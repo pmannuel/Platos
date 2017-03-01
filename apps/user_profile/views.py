@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
 from .models import User, UserManager, Profile, Image
+import unirest
+import json
 from ..schedules.models import Schedule, Day
 from .forms import ImgForm
 
@@ -1104,6 +1106,18 @@ def edit_profile(request, user_id):
     if request.method == "POST":
         user_id = request.session.get('active_user_id')
 
+        uSt = request.POST['street_number']
+        uRoute = request.POST['route']
+        uCity = request.POST['city']
+        uState = request.POST['state']
+
+        url = 'https://maps.googleapis.com/maps/api/geocode/json?address='+ uSt + ','+ uRoute + ',' + uCity + ',' + uState +'&key=AIzaSyBj4eaE79fE1cqdaq1XZALhzxCpKPd2F2I'
+        headers={"X-Mashape-Key": "ABCDEFG12345"}
+        response = unirest.get(url, headers=headers)
+        data = response.body
+        longtitude = data["results"][0]["geometry"]["location"]["lng"]
+        latitude = data["results"][0]["geometry"]["location"]["lat"]
+
         Profile.objects.create(
             user = User.objects.get(id=user_id),
             birthday = request.POST['birthday'],
@@ -1114,6 +1128,8 @@ def edit_profile(request, user_id):
             city = request.POST['city'],
             state = request.POST['state'],
             postal_code = request.POST['postal_code'],
+            longtitude = longtitude,
+            latitude = latitude,
             about_me = request.POST['about_me']
         )
 

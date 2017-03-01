@@ -33,18 +33,32 @@
             </div>
         </nav>
         <div id="body">
-            <h1>Homepage: {{user.firstname}} {{user.lastname}}</h1>
+            <h1>Homepage: {{profile.user.firstname}} {{profile.user.lastname}}</h1>
             {% if flag %}
-            <h3>{{user.firstname}} is located at {{profile.city}} </h3>
+            <h3>{{profile.user.firstname}} is located at {{profile.city}} </h3>
             {% else %}
                 <h3>Your info is incomplete!</h3>
                 <h3>Would you like to update?</h3>
                 <h3><a href="{%url 'user_profile:edit_profile' user_id=user.id %}">Take There!</a></h3>
             {% endif %}
-
+            <div id="matches">
+                <table>
+                    <tr>
+                        <th>Username</th>
+                        <th>Location</th>
+                        <th>Distance Away</th>
+                    </tr>
+                    {%for other_user in other_users%}
+                    <tr>
+                        <td>{{other_user.user.firstname}}</td>
+                        <td>{{other_user.city}}</td>
+                        <td>{{other_user.distAway}} miles</td>
+                    </tr>
+                    {%endfor%}
+                </table>
+            </div>
         </div>
         <div id="footer">
-
         </div>
     </div>
 </body>

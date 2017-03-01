@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from django.db import models
 from ..login_register.models import User, UserManager
 
+
 class Profile(models.Model):
     user = models.ForeignKey(User, related_name="user_profile")
     birthday = models.DateField(default=False)

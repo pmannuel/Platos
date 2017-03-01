@@ -13,6 +13,17 @@ def index(request, user_id):
         }
     return render(request, 'user_profile/index.html', data)
 
+def view_resize(request):
+    context = {
+    'img': Image.objects.filter(user_id = request.session['active_user_id']),
+    'user': User.objects.get(id = request.session['active_user_id'])
+    }
+    return render(request, 'user_profile/image_resize.html', context)
+
+def resize(request):
+
+    return redirect(reverse('user_profile:edit_profile', kwargs={'user_id': request.session['active_user_id']}))
+
 def image(request):
     user_id = request.session.get('active_user_id')
     if request.method == 'POST':

@@ -42,7 +42,6 @@ class User(models.Model):
     lastname = models.CharField(max_length=45, default="poopyhead")
     email = models.CharField(max_length=45)
     password = models.CharField(max_length=255)
-    avatar = models.ImageField(upload_to='login_register/avatar/', default='avatar/default/default.jpg')
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
     objects = UserManager()

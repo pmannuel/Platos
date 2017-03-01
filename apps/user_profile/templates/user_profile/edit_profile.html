@@ -27,10 +27,6 @@
             <form action="{%url 'user_profile:view_resize' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <input type="hidden" name="cropx" id="cropx" value="0" />
-                <input type="hidden" name="cropy" id="cropy" value="0" />
-                <input type="hidden" name="cropw" id="cropw" value="0" />
-                <input type="hidden" name="croph" id="croph" value="0" />
                 <input type="submit" value="Change Profile Picture" />
             </form>
             {% endblock %}

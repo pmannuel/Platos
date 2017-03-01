@@ -1080,7 +1080,7 @@ def update_times(request):
         schedule.sun = sun
         schedule.save()
 
-    return redirect(reverse('user_profile:view_times'))
+    return redirect(reverse('user_profile:edit_profile', kwargs={'user_id': request.session['active_user_id']}))
 
 def edit_profile(request, user_id):
     user_id = request.session.get('active_user_id')

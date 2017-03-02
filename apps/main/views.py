@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse
 import unirest
 import json
 from django.http import JsonResponse
-from .models import User, UserManager, Profile, Match
+from .models import User, UserManager, Profile, Match, Images
 from math import radians, cos, sin, asin, sqrt
 from haversine import haversine
 
@@ -27,21 +27,24 @@ def index(request):
                 Match.objects.create(
                     this_user = User.objects.get(id=user_id),
                     profile = Profile.objects.get(id=other_user.id),
-                    distance = dist
+                    distance = dist,
+                    image = Images.objects.get(user_id=user_id)
                 )
             else:
                 Match.objects.filter(this_user_id=user.id).update(
                     this_user = User.objects.get(id=user_id),
                     profile = Profile.objects.get(id=other_user.id),
-                    distance = dist
+                    distance = dist,
+                    image = Images.objects.get(user_id=other_user.id),
                 )
 
         setDistance = Profile.objects.only('distAway').get(user_id = request.session['active_user_id']).distAway
         data = {
             "user" : User.objects.get(id=user_id),
             "profile" : user,
-            "other_users" : Match.objects.filter(this_user_id=user_id).filter(distance__gte=setDistance),
-            'flag' : True
+            "other_users" : Match.objects.filter(this_user_id=user_id).filter(distance__lte=setDistance),
+            'flag' : True,
+            'img' : Images.objects.filter(user_id = user_id)
             }
 
     else:

@@ -28,7 +28,11 @@
                     <li><a href="">Message</a></li>
                     <li><a href="{% url 'user_profile:view_times' %}">Schedule</a></li>
                     <!-- Dropdown Trigger -->
-                    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Hello, {{user.firstname}} !<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li>{%for u in img%}<a class="dropdown-button" href="#!" data-activates="dropdown1">
+                      <img id='profile_pic' src = "../../media/{{ u.avatar }}" />Hello, {{user.firstname}} !<i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                    {% endfor %}
+                  </li>
                 </ul>
             </div>
         </nav>
@@ -40,6 +44,7 @@
                 <table class="centered" class="striped">
                     <thead>
                         <tr>
+                            <th>Photo</th>
                             <th>Name</th>
                             <th>Location</th>
                             <th>Distance</th>
@@ -48,6 +53,7 @@
                     <tbody>
                         {%for other_user in other_users%}
                         <tr>
+                            <td><img id='profile_pic' src = "../../media/{{ other_user.image.avatar }}" /></td>
                             <td><a href="{%url 'user_profile:index' user_id=other_user.profile.user.id%}">{{other_user.profile.user.firstname}} {{other_user.profile.user.lastname}}</a></td>
                             <td>{{other_user.profile.city}}, {{other_user.profile.state}}</td>
                             <td>{{other_user.distance}} miles</td>

@@ -9,10 +9,17 @@ from PIL import Image
 
 def index(request, user_id):
     user_id = request.session.get('active_user_id')
-    data = {
-        "user" : User.objects.get(id=user_id),
-        "profile" : Profile.objects.get(user_id=user_id)
-        }
+    user = User.objects.get(id = request.session['active_user_id'])
+    prof = Profile.objects.filter(user = user)
+    if not prof:
+        data = {
+            "user" : User.objects.get(id=user_id),
+            }
+    else:
+        data = {
+            "user" : User.objects.get(id=user_id),
+            "profile" : Profile.objects.get(user_id=user_id)
+            }
     return render(request, 'user_profile/index.html', data)
 
 def view_resize(request):

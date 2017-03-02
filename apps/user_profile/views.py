@@ -1132,7 +1132,7 @@ def update_times(request):
 def edit_profile(request, user_id):
     user_id = request.session.get('active_user_id')
     form = ImgForm()
-
+    user = User.objects.get(id = request.session['active_user_id'])
     if not Profile.objects.filter(user_id=user_id).exists():
         data = {
             "user" : User.objects.get(id=user_id),
@@ -1140,11 +1140,15 @@ def edit_profile(request, user_id):
             'img' : Images.objects.filter(user_id = user_id)
             }
     else:
+        prof = Profile.objects.get(user = user)
+        bday = str(prof.birthday)
+        print bday
         data = {
             "user" : User.objects.get(id=user_id),
-            "profile" : Profile.objects.get(user_id=user_id),
+            "profile" : Profile.objects.get(user = user),
             'form' : form,
-            'img' : Images.objects.filter(user_id = user_id)
+            'img' : Images.objects.filter(user_id = user_id),
+            'bday': bday
             }
 
     if request.method == "POST":
@@ -1168,7 +1172,7 @@ def edit_profile(request, user_id):
         print data
         longtitude = data["results"][0]["geometry"]["location"]["lng"]
         latitude = data["results"][0]["geometry"]["location"]["lat"]
-        
+
         uProf = Profile.objects.filter(user = user)
         if not uProf:
             Profile.objects.create(

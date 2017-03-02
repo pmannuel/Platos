@@ -12,19 +12,26 @@
     <script type="text/javascript">
       jQuery(function($){
         $('#profile_pic').Jcrop({
+            onChange: addCoords,
             setSelect: [0,0,250,250],
             aspectRatio: 1,
             bgColor: 'red',
             minSize: [250, 250],
             maxSize: [250, 250]
         });
-        $('#profile_pic').on('cropmove cropend',function(e,s,c){
-          $('#cropx').val(c.x);
-          $('#cropy').val(c.y);
-          $('#cropw').val(c.w);
-          $('#croph').val(c.h);
-        });
+        // $('#profile_pic').on('cropmove cropend',function(e,s,c){
+        //   // $('#cropx').val(c.x);
+        //   // $('#cropy').val(c.y);
+        //   // $('#cropw').val(c.w);
+        //   // $('#croph').val(c.h);
+        // });
       });
+      function addCoords(c){
+        $('#cropx').val(c.x);
+        $('#cropy').val(c.y);
+        $('#cropw').val(c.w);
+        $('#croph').val(c.h);
+      }
     </script>
     <title>Resize Profile Picture</title>
 </head>
@@ -34,12 +41,12 @@
     {% for u in img %}
       <img id='profile_pic' src = "../../media/{{ u.avatar }}" />
     {% endfor %}
-    <form action="{%url 'user_profile:resize' %}" method="POST" enctype="multipart/form-data">
+    <form action="{%url 'user_profile:resize' %}" method="POST" />
         {% csrf_token %}
-        <input type="hidden" name="cropx" id="cropx" value="0" />
-        <input type="hidden" name="cropy" id="cropy" value="0" />
-        <input type="hidden" name="cropw" id="cropw" value="0" />
-        <input type="hidden" name="croph" id="croph" value="0" />
+        <input type="hidden" name="cropx" id="cropx" value="5" />
+        <input type="hidden" name="cropy" id="cropy" value="5" />
+        <input type="hidden" name="cropw" id="cropw" value="5" />
+        <input type="hidden" name="croph" id="croph" value="5" />
         <input type="submit" value="Resize Profile Picture" />
     </form>
 

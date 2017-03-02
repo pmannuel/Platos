@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse
 from django.contrib import messages
 from .models import User, UserManager
 from ..schedules.models import Schedule, Day
-from ..user_profile.models import Image
+from ..user_profile.models import Images
 
 def index(request):
     return render(request, 'login_register/index.html')
@@ -59,7 +59,7 @@ def register(request):
             sun = Day.objects.create()
             schedule = Schedule.objects.create(user = user_active, mon = mon, tue = tue, wed = wed, thu = thu, fri = fri, sat = sat, sun = sun)
 
-            default_avatar = Image.objects.create(user_id = request.session['active_user_id'])
+            default_avatar = Images.objects.create(user_id = request.session['active_user_id'])
 
             return redirect(reverse('main:index'))
         else:

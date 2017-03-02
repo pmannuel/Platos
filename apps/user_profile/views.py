@@ -29,6 +29,11 @@ def resize(request):
     print image
     im = Image.open(image)
     box = (right, down, 250+right, 250+down)
+    if im.size[0] > 750:
+        basewidth = 750
+        wpercent = (basewidth/float(im.size[0]))
+        hsize = int((float(im.size[1])*float(wpercent)))
+        im = im.resize((basewidth,hsize), Image.ANTIALIAS)
     img2 = im.crop(box)
     savelocation = 'Platos/media/login_register/avatar/' + user + '.jpg'
     img2.save(savelocation,'JPEG')

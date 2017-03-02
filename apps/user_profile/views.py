@@ -22,17 +22,20 @@ def view_resize(request):
     return render(request, 'user_profile/image_resize.html', context)
 
 def resize(request):
+    user = str(request.session.get('active_user_id'))
     right = float(request.POST['cropx'])
     down = float(request.POST['cropy'])
     image = Images.objects.only('avatar').get(user_id = request.session['active_user_id']).avatar
+    print image
     im = Image.open(image)
     box = (right, down, 250+right, 250+down)
     img2 = im.crop(box)
-    print type(img2)
-    print img2
-    # user_id = request.session.get('active_user_id')
-    # delete = Images.objects.filter(user = user_id).delete()
-    # update = Images.objects.filter(user = user_id).create(avatar = img2, user_id = user_id, resize = True)
+    savelocation = 'Platos/media/login_register/avatar/' + user + '.jpg'
+    img2.save(savelocation,'JPEG')
+    location = 'login_register/avatar/' + user + '.jpg'
+    user_id = request.session.get('active_user_id')
+    delete = Images.objects.filter(user = user_id).delete()
+    update = Images.objects.filter(user = user_id).create(avatar = location, user_id = user_id, resize = True)
     return redirect(reverse('user_profile:edit_profile', kwargs={'user_id': request.session['active_user_id']}))
 
 def image(request):

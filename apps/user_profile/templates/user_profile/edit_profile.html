@@ -38,10 +38,11 @@
                 <p>First name</p><input type="text" name="first_name" value="{{user.firstname}}">
                 <p>Last name</p><input type="text" name="last_name" value="{{user.lastname}}">
                 <p>Email</p><input type="text" name="email" value="{{user.email}}">
-                <p>Birthday</p><input type="date" name="birthday" value="{{profile.birthday}}">
+                <p>Birthday</p><input type="date" name="birthday" value={{bday}}>
                 <p>Occupation</p><input type="text" name="occupation" value="{{profile.occupation}}">
                 <p>Company/School</p><input type="text" name="company" value="{{profile.company}}">
                 <p>Address</p>
+                {{profile.birthday}}
                 <div id="locationField">
                     <input id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text"></input>
                 </div>

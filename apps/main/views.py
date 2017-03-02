@@ -24,7 +24,6 @@ def index(request):
             print other_user.id
 
             dist = haversine((lat1, lon1), (lat2, lon2), miles=True)
-
             if not Match.objects.filter(this_user_id=user_id, profile_id=other_user.id).exists():
                 Match.objects.create(
                     this_user = User.objects.get(id=user_id),
@@ -39,16 +38,13 @@ def index(request):
                     distance = dist,
                     image = Images.objects.get(user_id=other_user.id),
                 )
-
-
+        setDistance = Profile.objects.only('distAway').get(user_id = request.session['active_user_id']).distAway
         data = {
             "user" : User.objects.get(id=user_id),
             "profile" : user,
-
-            "other_users" : Match.objects.filter(this_user_id=user_id).filter(distance__lte=setDistance),
+            "other_users" : Match.objects.filter(this_user_id=user_id).filter(distance__gte=setDistance),
             'flag' : True,
             'img' : Images.objects.filter(user_id = user_id)
-
             }
 
     else:

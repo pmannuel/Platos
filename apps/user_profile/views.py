@@ -1139,7 +1139,6 @@ def edit_profile(request, user_id):
     else:
         prof = Profile.objects.get(user = user)
         bday = str(prof.birthday)
-        print bday
         data = {
             "user" : User.objects.get(id=user_id),
             "profile" : Profile.objects.get(user = user),

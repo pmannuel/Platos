@@ -13,12 +13,17 @@ class Profile(models.Model):
     city = models.CharField(max_length=255)
     state = models.CharField(max_length=255)
     postal_code = models.CharField(max_length=255)
-    longtitude = models.IntegerField(default=0)
-    latitude = models.IntegerField(default=0)
+    longtitude = models.FloatField(default=0)
+    latitude = models.FloatField(default=0)
     about_me = models.CharField(max_length=500)
     distAway = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
+
+class Match(models.Model):
+    this_user = models.ForeignKey(User, default=0, related_name="match_user")
+    profile = models.ForeignKey(Profile, default=0, related_name="match_profile")
+    distance = models.IntegerField(default=0)
 
 class Images(models.Model):
     user = models.ForeignKey(User, related_name="user_image")

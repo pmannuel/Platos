@@ -27,3 +27,37 @@ div.nav-wrapper{
     color: #15253B;
     box-shadow: inset 2px -5px 11px #344771;
 }
+
+/*****BODY*****/
+#body{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#body div.left-bar{
+    padding: 2%;
+    background-color: #6E71A4;
+}
+
+#body div.profile{
+    width: 50%;
+    padding: 2%;
+    background-color: white;
+}
+
+p.aboutme{
+    height: 40%;
+    overflow-y: scroll;
+}
+
+p.interest{
+    margin-bottom: 1vh;
+}
+
+#divider{
+    height: 0.5vh;
+    width: 20vh;
+    margin: 4vh 0;
+    background-color: #6E71A4;
+}

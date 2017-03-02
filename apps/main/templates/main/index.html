@@ -48,7 +48,7 @@
                     <tbody>
                         {%for other_user in other_users%}
                         <tr>
-                            <td>{{other_user.profile.user.firstname}} {{other_user.profile.user.lastname}}</td>
+                            <td><a href="{%url 'user_profile:index' user_id=other_user.profile.user.id%}">{{other_user.profile.user.firstname}} {{other_user.profile.user.lastname}}</a></td>
                             <td>{{other_user.profile.city}}, {{other_user.profile.state}}</td>
                             <td>{{other_user.distance}} miles</td>
                         </tr>

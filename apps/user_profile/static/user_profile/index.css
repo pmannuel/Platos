@@ -43,12 +43,15 @@ div.nav-wrapper{
 #body div.profile{
     width: 50%;
     padding: 2%;
+    display: flex;
+    flex-direction: column;
     background-color: white;
 }
 
 p.aboutme{
-    height: 20%;
-    overflow-y: scroll;
+    height: 15%;
+    padding-right: 2%;
+    text-align: justify;
 }
 
 p.interest{

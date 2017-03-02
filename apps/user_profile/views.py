@@ -8,7 +8,6 @@ from .forms import ImgForm
 from PIL import Image
 
 def index(request, user_id):
-    user_id = request.session.get('active_user_id')
     user = User.objects.get(id = request.session['active_user_id'])
     prof = Profile.objects.filter(user = user)
     if not prof:

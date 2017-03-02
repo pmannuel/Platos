@@ -19,7 +19,7 @@
     <script src="{% static 'js/init.js' %}"></script>
     <div id="wrapper">
         <ul id='dropdown1' class='dropdown-content'>
-            <li><a href="{%url 'user_profile:index' user_id=user.id%}">Profile</a></li>
+            <li><a href="{%url 'user_profile:index' user_id=user.id%}">My Profile</a></li>
             <li><a href="{%url 'user_profile:edit_profile' user_id=user.id%}">Edit Profile</a></li>
             <li class="divider"></li>
             <li><a href="{%url 'login_register:logout'%}">Log Out</a></li>
@@ -58,6 +58,10 @@
                 <p><i class="tiny material-icons">location_on</i> {{profile.city}}, {{profile.state}}</p>
                 <p id="divider"></p>
                 <p><b>About Me</b></p>
+                <br>
+                <p class="aboutme">{{profile.about_me}}</p>
+                <br>
+                <p><b>Why I'm here</b></p>
                 <br>
                 <p class="aboutme">{{profile.about_me}}</p>
                 <br>

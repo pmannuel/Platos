@@ -1149,11 +1149,17 @@ def edit_profile(request, user_id):
 
     if request.method == "POST":
         user_id = request.session.get('active_user_id')
+        user = User.objects.get(id = request.session['active_user_id'])
 
         uSt = request.POST['street_number']
         uRoute = request.POST['route']
         uCity = request.POST['city']
         uState = request.POST['state']
+        uCompany = request.POST['company']
+        uOccupation = request.POST['occupation']
+        uBday = request.POST['birthday']
+        uZip = request.POST['postal_code']
+        uDesc = request.POST['about_me']
 
         url = 'https://maps.googleapis.com/maps/api/geocode/json?address='+ uSt + ','+ uRoute + ',' + uCity + ',' + uState +'&key=AIzaSyBj4eaE79fE1cqdaq1XZALhzxCpKPd2F2I'
         headers={"X-Mashape-Key": "ABCDEFG12345"}
@@ -1162,7 +1168,40 @@ def edit_profile(request, user_id):
         print data
         longtitude = data["results"][0]["geometry"]["location"]["lng"]
         latitude = data["results"][0]["geometry"]["location"]["lat"]
-
+        
+        uProf = Profile.objects.filter(user = user)
+        print uProf[0].occupation
+        if not uProf:
+            Profile.objects.create(
+                user = user,
+                birthday = request.POST['birthday'],
+                occupation = request.POST['occupation'],
+                company = request.POST['company'],
+                street_number = request.POST['street_number'],
+                route = request.POST['route'],
+                city = request.POST['city'],
+                state = request.POST['state'],
+                postal_code = request.POST['postal_code'],
+                longtitude = longtitude,
+                latitude = latitude,
+                about_me = request.POST['about_me']
+            )
+        else:
+            uProf = uProf[0]
+            uProf.birthday = uBday,
+            uProf.occupation = uOccupation,
+            uProf.company = uCompany,
+            uProf.street_number = uSt,
+            uProf.route = uRoute,
+            uProf.city = uCity,
+            uProf.state = uState,
+            uProf.postal_code = uZip,
+            uProf.longtitude = longtitude,
+            uProf.latitude = latitude,
+            uProf.about_me = uDesc
+            # uProf.save()
+        print uProf.occupation
+        print uProf.company
         return redirect(reverse('user_profile:index', kwargs={'user_id': user_id}))
 
     return render(request, 'user_profile/edit_profile.html', data)

@@ -36,10 +36,11 @@ def index(request):
                     distance = dist
                 )
 
+        setDistance = Profile.objects.only('distAway').get(user_id = request.session['active_user_id']).distAway
         data = {
             "user" : User.objects.get(id=user_id),
             "profile" : user,
-            "other_users" : Match.objects.filter(this_user_id=user_id),
+            "other_users" : Match.objects.filter(this_user_id=user_id).filter(distance__gte=setDistance),
             'flag' : True
             }
 

@@ -37,7 +37,9 @@
         </nav>
         <div id="body">
             <div class="left-bar">
-                <img src="http://www.american.edu/uploads/profiles/large/chris_palmer_profile_11.jpg" alt="">
+              {% for u in img%}
+                <img id='profile_pic' src = "../../media/{{ u.avatar }}" />
+              {% endfor %}
                 <table>
                     <tr>
                         <th>Occupation:</th>

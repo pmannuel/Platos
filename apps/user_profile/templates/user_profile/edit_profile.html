@@ -38,9 +38,9 @@
                 <p>First name</p><input type="text" name="first_name" value="{{user.firstname}}">
                 <p>Last name</p><input type="text" name="last_name" value="{{user.lastname}}">
                 <p>Email</p><input type="text" name="email" value="{{user.email}}">
-                <p>Birthday</p><input type="date" name="birthday" value="">
-                <p>Occupation</p><input type="text" name="occupation" value="">
-                <p>Company/School</p><input type="text" name="company" value="">
+                <p>Birthday</p><input type="date" name="birthday" value="{{profile.birthday}}">
+                <p>Occupation</p><input type="text" name="occupation" value="{{profile.occupation}}">
+                <p>Company/School</p><input type="text" name="company" value="{{profile.company}}">
                 <p>Address</p>
                 <div id="locationField">
                     <input id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text"></input>
@@ -73,7 +73,7 @@
                     </tr>
                 </table>
                 <p>About me</p>
-                <textarea name="about_me" rows="8" cols="80"></textarea>
+                <textarea name="about_me" rows="8" cols="80">{{profile.about_me}}</textarea>
                 <input type="submit" name="submit" value="Update Profile">
             </form>
         </div>

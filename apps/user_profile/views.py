@@ -11,6 +11,7 @@ def index(request, user_id):
     user_id = request.session.get('active_user_id')
     data = {
         "user" : User.objects.get(id=user_id),
+        "profile" : Profile.objects.get(user_id=user_id)
         }
     return render(request, 'user_profile/index.html', data)
 
@@ -1131,11 +1132,21 @@ def update_times(request):
 def edit_profile(request, user_id):
     user_id = request.session.get('active_user_id')
     form = ImgForm()
-    data = {
-        "user" : User.objects.get(id=user_id),
-        'form' : form,
-        'img' : Images.objects.filter(user_id = user_id)
-        }
+
+    if not Profile.objects.filter(user_id=user_id).exists():
+        data = {
+            "user" : User.objects.get(id=user_id),
+            'form' : form,
+            'img' : Images.objects.filter(user_id = user_id)
+            }
+    else:
+        data = {
+            "user" : User.objects.get(id=user_id),
+            "profile" : Profile.objects.get(user_id=user_id),
+            'form' : form,
+            'img' : Images.objects.filter(user_id = user_id)
+            }
+
     if request.method == "POST":
         user_id = request.session.get('active_user_id')
 
@@ -1152,20 +1163,39 @@ def edit_profile(request, user_id):
         longtitude = data["results"][0]["geometry"]["location"]["lng"]
         latitude = data["results"][0]["geometry"]["location"]["lat"]
 
-        Profile.objects.create(
-            user = User.objects.get(id=user_id),
-            birthday = request.POST['birthday'],
-            occupation = request.POST['occupation'],
-            company = request.POST['company'],
-            street_number = request.POST['street_number'],
-            route = request.POST['route'],
-            city = request.POST['city'],
-            state = request.POST['state'],
-            postal_code = request.POST['postal_code'],
-            longtitude = longtitude,
-            latitude = latitude,
-            about_me = request.POST['about_me']
-        )
+        if not Profile.objects.filter(user_id=user_id).exists():
+            Profile.objects.create(
+                user = User.objects.get(id=user_id),
+                birthday = request.POST['birthday'],
+                occupation = request.POST['occupation'],
+                company = request.POST['company'],
+                street_number = request.POST['street_number'],
+                route = request.POST['route'],
+                city = request.POST['city'],
+                state = request.POST['state'],
+                postal_code = request.POST['postal_code'],
+                longtitude = longtitude,
+                latitude = latitude,
+                about_me = request.POST['about_me']
+            )
+
+        else:
+            user_profile = Profile.objects.get(user_id=user_id)
+
+            user_profile.user = User.objects.get(id=user_id)
+            user_profile.birthday = request.POST['birthday']
+            user_profile.occupation = request.POST['occupation']
+            user_profile.company = request.POST['company']
+            user_profile.street_number = request.POST['street_number']
+            user_profile.route = request.POST['route']
+            user_profile.city = request.POST['city']
+            user_profile.state = request.POST['state']
+            user_profile.postal_code = request.POST['postal_code']
+            user_profile.longtitude = longtitude
+            user_profile.latitude = latitude
+            user_profile.about_me = request.POST['about_me']
+
+            user_profile.save()
 
         return redirect(reverse('user_profile:index', kwargs={'user_id': user_id}))
 

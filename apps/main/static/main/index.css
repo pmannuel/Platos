@@ -28,6 +28,10 @@ div.nav-wrapper{
     box-shadow: inset 2px -5px 11px #344771;
 }
 
+div.nav-wrapper a:hover{
+    color: #CFC3EB;
+}
+
 #logo{
     display: flex;
     align-items: center;
@@ -35,4 +39,21 @@ div.nav-wrapper{
     color: white;
     font-size: 1.5em;
     margin-left: 1.5vh;
+}
+
+/*****BODY*****/
+td a{
+    color: black;
+}
+
+td a:hover{
+    color: #A020F0;
+}
+
+tbody tr:hover{
+    background-color: #CFC3EB;
+}
+
+#matches{
+    margin-top: 5vh;
 }

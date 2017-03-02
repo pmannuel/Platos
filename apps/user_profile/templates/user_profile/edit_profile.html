@@ -35,9 +35,9 @@
 
             <form class="user_profile" action="{%url 'user_profile:edit_profile' user_id=user.id%}" method="post">
                 {% csrf_token %}
-                <p>First name</p><input type="text" name="first_name" value="{{user.firstname}}">
-                <p>Last name</p><input type="text" name="last_name" value="{{user.lastname}}">
-                <p>Email</p><input type="text" name="email" value="{{user.email}}">
+                <p>First name</p><input type="text" name="first_name" value="{{user.firstname}}" disabled="True">
+                <p>Last name</p><input type="text" name="last_name" value="{{user.lastname}}" disabled="True">
+                <p>Email</p><input type="text" name="email" value="{{user.email}}" disabled="True">
                 <p>Birthday</p><input type="date" name="birthday" value={{bday}}>
                 <p>Occupation</p><input type="text" name="occupation" value="{{profile.occupation}}">
                 <p>Company/School</p><input type="text" name="company" value="{{profile.company}}">

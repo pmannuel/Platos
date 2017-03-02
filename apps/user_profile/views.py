@@ -1148,6 +1148,7 @@ def edit_profile(request, user_id):
         headers={"X-Mashape-Key": "ABCDEFG12345"}
         response = unirest.get(url, headers=headers)
         data = response.body
+        print data
         longtitude = data["results"][0]["geometry"]["location"]["lng"]
         latitude = data["results"][0]["geometry"]["location"]["lat"]
 

@@ -3,7 +3,9 @@ from django.core.urlresolvers import reverse
 import unirest
 import json
 from django.http import JsonResponse
-from .models import User, UserManager, Profile
+from .models import User, UserManager, Profile, Match
+from math import radians, cos, sin, asin, sqrt
+from haversine import haversine
 
 def index(request):
     user_id = request.session.get('active_user_id')
@@ -12,31 +14,28 @@ def index(request):
         user = Profile.objects.get(user__id=user_id)
         other_users = Profile.objects.all().exclude(user__id=user_id)
 
-        uSt = user.street_number
-        uRoute = user.route
-        uCity = user.city
-        uState = user.state
+        lat1 = user.latitude
+        lon1 = user.longtitude
 
         for other_user in other_users:
-            oSt = other_user.street_number
-            oRoute = other_user.route
-            oCity = other_user.city
-            oState = other_user.state
+            lat2 = other_user.latitude
+            lon2 = other_user.longtitude
 
-            url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins='+ uSt + ','+ uRoute + ',' + uCity + ',' + uState +'&destinations='+ oSt + ','+ oRoute + ',' + oCity + ',' + oState +'&key=AIzaSyBj4eaE79fE1cqdaq1XZALhzxCpKPd2F2I'
-            headers={"X-Mashape-Key": "ABCDEFG12345"}
+            print other_user.id
 
-            response = unirest.get(url, headers=headers)
-            data = response.body
-            dist = data['rows'][0]['elements'][0]['distance']['value']
-            dist = int(dist*0.000621371)
+            dist = haversine((lat1, lon1), (lat2, lon2), miles=True)
 
-            other_user.distAway = dist
+            if not Match.objects.filter(this_user_id=user_id, profile_id=other_user.id).exists():
+                Match.objects.create(
+                    this_user = User.objects.get(id=user_id),
+                    profile = Profile.objects.get(id=other_user.id),
+                    distance = dist
+                )
 
         data = {
             "user" : User.objects.get(id=user_id),
             "profile" : user,
-            "other_users" : other_users,
+            "other_users" : Match.objects.filter(this_user_id=user_id),
             'flag' : True
             }
 

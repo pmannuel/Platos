@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
-from .models import User, UserManager, Profile, Image
+from .models import User, UserManager, Profile, Images
 import unirest
 import json
 from ..schedules.models import Schedule, Day
 from .forms import ImgForm
+from PIL import Image
 
 def index(request, user_id):
     user_id = request.session.get('active_user_id')
@@ -15,13 +16,23 @@ def index(request, user_id):
 
 def view_resize(request):
     context = {
-    'img': Image.objects.filter(user_id = request.session['active_user_id']),
+    'img': Images.objects.filter(user_id = request.session['active_user_id']),
     'user': User.objects.get(id = request.session['active_user_id'])
     }
     return render(request, 'user_profile/image_resize.html', context)
 
 def resize(request):
-
+    right = float(request.POST['cropx'])
+    down = float(request.POST['cropy'])
+    image = Images.objects.only('avatar').get(user_id = request.session['active_user_id']).avatar
+    im = Image.open(image)
+    box = (right, down, 250+right, 250+down)
+    img2 = im.crop(box)
+    print type(img2)
+    print img2
+    # user_id = request.session.get('active_user_id')
+    # delete = Images.objects.filter(user = user_id).delete()
+    # update = Images.objects.filter(user = user_id).create(avatar = img2, user_id = user_id, resize = True)
     return redirect(reverse('user_profile:edit_profile', kwargs={'user_id': request.session['active_user_id']}))
 
 def image(request):
@@ -29,9 +40,9 @@ def image(request):
     if request.method == 'POST':
         form = ImgForm(request.POST, request.FILES)
         if form.is_valid():
-            delete = Image.objects.filter(user = user_id).delete()
-            update = Image.objects.filter(user = user_id).create(avatar=request.FILES['imgfile'], user_id = user_id)
-    return redirect(reverse('user_profile:edit_profile', kwargs={'user_id': user_id}))
+            delete = Images.objects.filter(user = user_id).delete()
+            update = Images.objects.filter(user = user_id).create(avatar=request.FILES['imgfile'], user_id = user_id, resize = False)
+    return redirect(reverse('user_profile:view_resize'))
 
 def view_times(request):
     active_user = User.objects.get(id = request.session['active_user_id'])
@@ -1101,7 +1112,7 @@ def edit_profile(request, user_id):
     data = {
         "user" : User.objects.get(id=user_id),
         'form' : form,
-        'img' : Image.objects.filter(user_id = user_id)
+        'img' : Images.objects.filter(user_id = user_id)
         }
     if request.method == "POST":
         user_id = request.session.get('active_user_id')

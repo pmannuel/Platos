@@ -21,7 +21,9 @@ class UserManager(models.Manager):
           cpass_l = len(cpassword)
 
           error_messages = []
-
+          exists = User.objects.filter(email = email)
+          if exists:
+              error_messages.append('This email address is already in use, please log in above')
           if name_l < 1 or lastname_l < 1 or email_l < 1 or pw_l < 1 or cpass_l < 1 :
               error_messages.append('All fields are required and must not be blank')
               return error_messages
@@ -34,6 +36,7 @@ class UserManager(models.Manager):
               return error_messages
           if password != cpassword:
               error_messages.append("Password do not match")
+
 
           return error_messages
 

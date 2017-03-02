@@ -39,7 +39,6 @@ def register(request):
         cpassword = request.POST['cpassword']
 
         error_messages = User.objects.register(firstname, lastname, email, password, cpassword)
-
         if error_messages == []:
             diffpassword = User.objects.encrypt(password)
             User.objects.create(

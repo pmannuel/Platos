@@ -15,44 +15,44 @@ class ScheduleManager(models.Manager):
         i = 0
         while(i<=23):
             param = 'mon_schedule__h' + i + 'to' + i+1
-            if Schedule.objects.filter(param).filter(user = session['user_id']) == True:
-                mon.append(Schedule.objects.filter(param).exclude(user = request.session['user_id']))
+            if Schedule.objects.filter(param).filter(user = request.session['active_user_id']) == True:
+                mon.append(Schedule.objects.filter(param).exclude(user = request.session['active_user_id']))
             i += 1
         i = 0
         while(i<=23):
             param = 'tue_schedule__h' + i + 'to' + i+1
-            if Schedule.objects.filter(param).filter(user = request.session['user_id']) == True:
-                tue.append(Schedule.objects.filter(param).exclude(user = request.session['user_id']))
+            if Schedule.objects.filter(param).filter(user = request.session['active_user_id']) == True:
+                tue.append(Schedule.objects.filter(param).exclude(user = request.session['active_user_id']))
             i += 1
         i = 0
         while(i<=23):
             param = 'wed_schedule__h' + i + 'to' + i+1
-            if Schedule.objects.filter(param).filter(user = request.session['user_id']) == True:
-                wed.append(Schedule.objects.filter(param).exclude(user = request.session['user_id']))
+            if Schedule.objects.filter(param).filter(user = request.session['active_user_id']) == True:
+                wed.append(Schedule.objects.filter(param).exclude(user = request.session['active_user_id']))
             i += 1
         i = 0
         while(i<=23):
             param = 'thu_schedule__h' + i + 'to' + i+1
-            if Schedule.objects.filter(param).filter(user = request.session['user_id']) == True:
-                thu.append(Schedule.objects.filter(param).exclude(user = request.session['user_id']))
+            if Schedule.objects.filter(param).filter(user = request.session['active_user_id']) == True:
+                thu.append(Schedule.objects.filter(param).exclude(user = request.session['active_user_id']))
             i += 1
         i = 0
         while(i<=23):
             param = 'fri_schedule__h' + i + 'to' + i+1
-            if Schedule.objects.filter(param).filter(user = request.session['user_id']) == True:
-                fri.append(Schedule.objects.filter(param).exclude(user = request.session['user_id']))
+            if Schedule.objects.filter(param).filter(user = request.session['active_user_id']) == True:
+                fri.append(Schedule.objects.filter(param).exclude(user = request.session['active_user_id']))
             i += 1
         i = 0
         while(i<=23):
             param = 'sat_schedule__h' + i + 'to' + i+1
-            if Schedule.objects.filter(param).filter(user = request.session['user_id']) == True:
-                sat.append(Schedule.objects.filter(param).exclude(user = request.session['user_id']))
+            if Schedule.objects.filter(param).filter(user = request.session['active_user_id']) == True:
+                sat.append(Schedule.objects.filter(param).exclude(user = request.session['active_user_id']))
             i += 1
         i = 0
         while(i<=23):
             param = 'sun_schedule__h' + i + 'to' + i+1
-            if Schedule.objects.filter(param).filter(user = request.session['user_id']) == True:
-                sun.append(Schedule.objects.filter(param).exclude(user = request.session['user_id']))
+            if Schedule.objects.filter(param).filter(user = request.session['active_user_id']) == True:
+                sun.append(Schedule.objects.filter(param).exclude(user = request.session['active_user_id']))
             i += 1
         matches = {
         'mon': mon,

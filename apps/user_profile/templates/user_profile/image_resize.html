@@ -10,6 +10,12 @@
     <script src="{% static 'js/Jcrop.js' %}"></script>
     <link rel="stylesheet" href="{% static 'css/Jcrop.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'user_profile/google_places_api.css' %}">
+    <style>
+    .jcrop-active{
+        max-width: 750px;
+        max-height: {{size}}
+    }
+    </style>
     <script type="text/javascript">
       jQuery(function($){
         $('#profile_pic').Jcrop({

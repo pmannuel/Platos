@@ -16,7 +16,7 @@
     <script src="{% static 'js/init.js' %}"></script>
     <div id="wrapper">
         <ul id='dropdown1' class='dropdown-content'>
-            <li><a href="{%url 'user_profile:index' user_id=user.id%}">Profile</a></li>
+            <li><a href="{%url 'user_profile:index' user_id=user.id%}">My Profile</a></li>
             <li><a href="{%url 'user_profile:edit_profile' user_id=user.id%}">Edit Profile</a></li>
             <li class="divider"></li>
             <li><a href="{%url 'login_register:logout'%}">Log Out</a></li>
@@ -33,23 +33,27 @@
             </div>
         </nav>
         <div id="body">
-            <h1>Homepage: {{profile.user.firstname}} {{profile.user.lastname}}</h1>
+            <h1>Welcome back, {{profile.user.firstname}} {{profile.user.lastname}}!</h1>
             {% if flag %}
-            <h3>{{profile.user.firstname}} is located at {{profile.city}} </h3>
+            <h4><i class="small material-icons">location_on</i> {{profile.city}}, {{profile.state}}</h4>
             <div id="matches">
-                <table>
-                    <tr>
-                        <th>Username</th>
-                        <th>Location</th>
-                        <th>Distance</th>
-                    </tr>
-                    {%for other_user in other_users%}
-                    <tr>
-                        <td>{{other_user.profile.user.firstname}}</td>
-                        <td>{{other_user.profile.city}}</td>
-                        <td>{{other_user.distance}} miles</td>
-                    </tr>
-                    {%endfor%}
+                <table class="centered" class="striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Location</th>
+                            <th>Distance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for other_user in other_users%}
+                        <tr>
+                            <td>{{other_user.profile.user.firstname}} {{other_user.profile.user.lastname}}</td>
+                            <td>{{other_user.profile.city}}, {{other_user.profile.state}}</td>
+                            <td>{{other_user.distance}} miles</td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
                 </table>
             </div>
             {% else %}

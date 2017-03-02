@@ -11,6 +11,7 @@ def index(request, user_id):
     user_id = request.session.get('active_user_id')
     data = {
         "user" : User.objects.get(id=user_id),
+        "profile" : Profile.objects.get(user_id=user_id)
         }
     return render(request, 'user_profile/index.html', data)
 
@@ -1131,11 +1132,21 @@ def update_times(request):
 def edit_profile(request, user_id):
     user_id = request.session.get('active_user_id')
     form = ImgForm()
-    data = {
-        "user" : User.objects.get(id=user_id),
-        'form' : form,
-        'img' : Images.objects.filter(user_id = user_id)
-        }
+
+    if not Profile.objects.filter(user_id=user_id).exists():
+        data = {
+            "user" : User.objects.get(id=user_id),
+            'form' : form,
+            'img' : Images.objects.filter(user_id = user_id)
+            }
+    else:
+        data = {
+            "user" : User.objects.get(id=user_id),
+            "profile" : Profile.objects.get(user_id=user_id),
+            'form' : form,
+            'img' : Images.objects.filter(user_id = user_id)
+            }
+
     if request.method == "POST":
         user_id = request.session.get('active_user_id')
         user = User.objects.get(id = request.session['active_user_id'])
@@ -1157,6 +1168,7 @@ def edit_profile(request, user_id):
         print data
         longtitude = data["results"][0]["geometry"]["location"]["lng"]
         latitude = data["results"][0]["geometry"]["location"]["lat"]
+        
         uProf = Profile.objects.filter(user = user)
         print uProf[0].occupation
         if not uProf:

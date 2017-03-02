@@ -15,10 +15,24 @@ def index(request, user_id):
     return render(request, 'user_profile/index.html', data)
 
 def view_resize(request):
-    context = {
-    'img': Images.objects.filter(user_id = request.session['active_user_id']),
-    'user': User.objects.get(id = request.session['active_user_id'])
-    }
+    image = Images.objects.only('avatar').get(user_id = request.session['active_user_id']).avatar
+    print image
+    im = Image.open(image)
+    if im.size[0] > 750:
+        basewidth = 750
+        wpercent = (basewidth/float(im.size[0]))
+        hsize = int((float(im.size[1])*float(wpercent)))
+        strhsize = str(hsize) + 'px'
+        context = {
+        'img': Images.objects.filter(user_id = request.session['active_user_id']),
+        'user': User.objects.get(id = request.session['active_user_id']),
+        'size': strhsize
+        }
+    else:
+        context = {
+        'img': Images.objects.filter(user_id = request.session['active_user_id']),
+        'user': User.objects.get(id = request.session['active_user_id'])
+        }
     return render(request, 'user_profile/image_resize.html', context)
 
 def resize(request):
@@ -29,6 +43,11 @@ def resize(request):
     print image
     im = Image.open(image)
     box = (right, down, 250+right, 250+down)
+    if im.size[0] > 750:
+        basewidth = 750
+        wpercent = (basewidth/float(im.size[0]))
+        hsize = int((float(im.size[1])*float(wpercent)))
+        im = im.resize((basewidth,hsize), Image.ANTIALIAS)
     img2 = im.crop(box)
     savelocation = 'Platos/media/login_register/avatar/' + user + '.jpg'
     img2.save(savelocation,'JPEG')

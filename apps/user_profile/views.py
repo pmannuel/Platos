@@ -17,7 +17,6 @@ def index(request, user_id):
 
 def view_resize(request):
     image = Images.objects.only('avatar').get(user_id = request.session['active_user_id']).avatar
-    print image
     im = Image.open(image)
     if im.size[0] > 750:
         basewidth = 750
@@ -41,7 +40,6 @@ def resize(request):
     right = float(request.POST['cropx'])
     down = float(request.POST['cropy'])
     image = Images.objects.only('avatar').get(user_id = request.session['active_user_id']).avatar
-    print image
     im = Image.open(image)
     box = (right, down, 250+right, 250+down)
     if im.size[0] > 750:
@@ -75,7 +73,6 @@ def view_times(request):
     return render(request, 'user_profile/edit_times.html', context)
 
 def update_times(request):
-    print "TEST"
     if request.method == 'POST':
         if 'Mon0to1' in request.POST:
             bMon0to1 = True
@@ -1169,7 +1166,6 @@ def edit_profile(request, user_id):
         headers={"X-Mashape-Key": "ABCDEFG12345"}
         response = unirest.get(url, headers=headers)
         data = response.body
-        print data
         longtitude = data["results"][0]["geometry"]["location"]["lng"]
         latitude = data["results"][0]["geometry"]["location"]["lat"]
 

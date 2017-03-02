@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    {% load staticfiles %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="http://jcrop-cdn.tapmodo.com/v2.0.0-RC1/js/Jcrop.js"></script>
-    <link rel="stylesheet" href="http://jcrop-cdn.tapmodo.com/v2.0.0-RC1/css/Jcrop.css" type="text/css">
-    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/resize.css' %}" type="text/css">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/Jcrop.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/Jcrop.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'user_profile/google_places_api.css' %}">
     <script type="text/javascript">
       jQuery(function($){

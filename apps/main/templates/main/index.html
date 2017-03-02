@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Email Validation</title>
+    <title>{{profile.user.firstname}} {{profile.user.lastname}}</title>
     {% load staticfiles %}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -37,9 +37,9 @@
             </div>
         </nav>
         <div id="body">
-            <h1>Welcome back, {{profile.user.firstname}} {{profile.user.lastname}}!</h1>
+            <h1>Welcome back!</h1>
             {% if flag %}
-            <h4><i class="small material-icons">location_on</i> {{profile.city}}, {{profile.state}}</h4>
+            <h5>{{profile.user.firstname}} {{profile.user.lastname}} <i class="small material-icons">location_on</i> {{profile.city}}, {{profile.state}}</h5>
             <div id="matches">
                 <table class="centered" class="striped">
                     <thead>

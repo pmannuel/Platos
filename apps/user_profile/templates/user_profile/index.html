@@ -36,10 +36,38 @@
             </div>
         </nav>
         <div id="body">
+            <div class="left-bar">
+                <img src="http://www.american.edu/uploads/profiles/large/chris_palmer_profile_11.jpg" alt="">
+                <table>
+                    <tr>
+                        <th>Occupation:</th>
+                        <td>{{profile.occupation}}</td>
+                    </tr>
+                    <tr>
+                        <th>Company:</th>
+                        <td>{{profile.company}}</td>
+                    </tr>
+                    <tr>
+                        <th>Birthday:</th>
+                        <td>{{profile.birthday}}</td>
+                    </tr>
+                </table>
+            </div>
             <div class="profile">
-                <h2>{{user.firstname}}<br>{{user.lastname}}</h2>
-                <p><b>Bio</b></p>
-                <p>{{profile.about_me}}</p>
+                <h2>{{user.firstname}} {{user.lastname}}</h2>
+                <p><i class="tiny material-icons">location_on</i> {{profile.city}}, {{profile.state}}</p>
+                <p id="divider"></p>
+                <p><b>About Me</b></p>
+                <br>
+                <p class="aboutme">{{profile.about_me}}</p>
+                <br>
+                <div class="interests">
+                    <p class="interest"><b>Interests</b></p>
+                    <div class="chip">Karaoke</div>
+                    <div class="chip">Jogging</div>
+                    <div class="chip">Dancing</div>
+                    <div class="chip">Samurai</div>
+                </div>
             </div>
         </div>
     </div>

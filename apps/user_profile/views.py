@@ -1168,7 +1168,7 @@ def edit_profile(request, user_id):
         print data
         longtitude = data["results"][0]["geometry"]["location"]["lng"]
         latitude = data["results"][0]["geometry"]["location"]["lat"]
-        
+
         uProf = Profile.objects.filter(user = user)
         if not uProf:
             Profile.objects.create(

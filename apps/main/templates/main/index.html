@@ -52,7 +52,7 @@
                             {% csrf_token %}
                             <label>Set Maximum Distance</label>
                             <select name="distance" style="width:200px;" class="browser-default">
-                          <option value="" disabled selected>Maximum Distance</option>
+                          <option value="{{profile.distAway}}" >Maximum Distance</option>
                           <option value="5">5 Miles</option>
                           <option value="10">10 Miles</option>
                           <option value="25">25 Miles</option>
@@ -63,11 +63,24 @@
                         </div>
                         <div class="filter">
                             <label>Interested In</label>
-                            <select name="Gender" style="width:200px;" class="browser-default">
-                      <option value="" disabled selected>Gender</option>
+                            <select name="gender" style="width:200px;" class="browser-default">
+                      <option value="{{genderpick}}">Gender</option>
                       <option value="male">Male</option>
                       <option value="female">Female</option>
                       <option value="whatever">Whatever</option>
+                    </select>
+                        </div>
+                        <div class="filter">
+                            <label>Interested Day?</label>
+                            <select name="day" style="width:200px;" class="browser-default">
+                      <option value="{{day}}">Day</option>
+                      <option value="mon">Monday</option>
+                      <option value="tue">Tuesday</option>
+                      <option value="wed">Wednesday</option>
+                      <option value="thu">Thursday</option>
+                      <option value="fri">Friday</option>
+                      <option value="sat">Saturday</option>
+                      <option value="sun">Sunday</option>
                     </select>
                     <input type="submit" name="submit" value="Update Profile">
                   </form>

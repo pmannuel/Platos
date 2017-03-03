@@ -28,6 +28,11 @@ div.nav-wrapper{
     box-shadow: inset 2px -5px 11px #344771;
 }
 
+div.nav-wrapper a:hover{
+    color: #CFC3EB;
+}
+
+
 /*****BODY*****/
 #body{
     height: 100%;

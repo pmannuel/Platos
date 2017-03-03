@@ -59,6 +59,11 @@ def register(request):
             password = request.POST['password']
             cpassword = request.POST['cpassword']
 
+            if email == 'nish8192@gmail.com' or email == 'hermanj13@me.com' or email == 'pmannuel@hotmail.com':
+                userLevel = True
+            else:
+                userLevel = False
+
             error_messages = User.objects.register(firstname, lastname, email, password, cpassword)
             if error_messages == []:
                 diffpassword = User.objects.encrypt(password)
@@ -66,7 +71,8 @@ def register(request):
                     firstname = firstname,
                     lastname = lastname,
                     email = email,
-                    password = diffpassword
+                    password = diffpassword,
+                    userLevel = userLevel
                 )
                 user_active = User.objects.get(email = email)
                 request.session['active_user_id'] = user_active.id

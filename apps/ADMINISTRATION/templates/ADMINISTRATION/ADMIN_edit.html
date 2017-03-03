@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'user_profile/edit_profile.css' %}">
+    <title>Edit {{user.firstname}}'s Profile</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="body">
+            <h1>Edit Profile</h1>
+            <hr>
+            <h2>Profile Photo</h2>
+            <div class="section1">
+                {% for u in img %}
+                <img style="height:15vh;" id='profile_pic' src = "../../media/{{ u.avatar }}" />
+                {% endfor %}
+                {% block content %}
+                <form class="profpic" action="{%url 'admin:ADMIN_image' user_id=user.id %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <br>
+                    <input style="width: 9vh;" type="submit" value="Upload" />
+                </form>
+                {% endblock %}
+                <form action="{% url 'admin:ADMIN_save' user_id=user.id %}" method="post">
+                    {% csrf_token %}
+                <p>First Name: <input name='fname' type="text" value="{{user.firstname}}" required></p>
+                <br/>
+                <p>Last Name: <input name='lname' type="text" value="{{user.lastname}}" required></p>
+                <br/>
+                <p>Email: <input name='email' type="text" value="{{user.email}}" required></p>
+                <br/>
+                {% if profile %}
+                <p>Occupation: <input name='occupation' type="text" value="{{profile.occupation}}" required></p>
+                <br/>
+                <p>Company: <input name='company' type="text" value="{{profile.occupation}}" required></p>
+                <br/>
+                {% endif %}
+                <input type="submit" value="SAVE CHANGES">
+                </form>
+            </div>
+            </div>
+            <div style='text-align:center'><a href="{% url 'admin:index' %}">Return to ADMIN Page</a></div>
+            </div>
+</body>
+</html>

@@ -51,10 +51,10 @@
                     <h5 style="margin-left:40px;">{{profile.user.firstname}} {{profile.user.lastname}}<i class="small material-icons">location_on</i> {{profile.city}}, {{profile.state}}</h5>
                     <div style="margin-left:40px;" id="sub">
                         <div style="margin-right:40px;" class="filter">
-                          <form action="{%url 'main:alter' %}" method="post">
-                            {% csrf_token %}
-                            <label>Set Maximum Distance</label>
-                            <select name="distance" style="width:200px;" class="browser-default">
+                            <form action="{%url 'main:alter' %}" method="post">
+                                {% csrf_token %}
+                                <label>Set Maximum Distance</label>
+                                <select name="distance" style="width:200px;" class="browser-default">
                           <option value="{{profile.distAway}}" >Maximum Distance</option>
                           <option value="5">5 Miles</option>
                           <option value="10">10 Miles</option>
@@ -67,11 +67,11 @@
                         <div class="filter">
                             <label>Interested In</label>
                             <select name="gender" style="width:200px;" class="browser-default">
-                      <option value="{{genderpick}}">Gender</option>
-                      <option value="Male">Male</option>
-                      <option value="Female">Female</option>
-                      <option value="whatever">Whatever</option>
-                    </select>
+                              <option value="{{genderpick}}">Gender</option>
+                              <option value="Male">Male</option>
+                              <option value="Female">Female</option>
+                              <option value="whatever">Whatever</option>
+                            </select>
                         </div>
                         <!-- <div class="filter">
                             <label>Interested Day?</label>
@@ -85,8 +85,8 @@
                       <option value="sat">Saturday</option>
                       <option value="sun">Sunday</option>
                     </select> -->
-                    <input type="submit" name="submit" value="Update Profile">
-                  </form>
+                        <input style="margin-left:4vh;margin-top:2vh;height:5vh;width:20vh;"type="submit" name="submit" value="Set Preferences">
+                        </form>
                         <!-- </div> -->
                     </div>
                 </div>
@@ -101,14 +101,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                          {%for other_user in other_users%}
-                          <tr>
-                              <td><img style="height:10vh;" class="circle responsive-img" id='profile_pic' src="../../media/{{ other_user.image.avatar }}" /></td>
-                              <td><a href="{%url 'user_profile:index' user_id=other_user.profile.user.id%}">{{other_user.profile.user.firstname}} {{other_user.profile.user.lastname}}</a></td>
-                              <td>{{other_user.profile.city}}, {{other_user.profile.state}}</td>
-                              <td>{{other_user.distance}} miles</td>
-                          </tr>
-                          {%endfor%}
+                            {%for other_user in other_users%}
+                            <tr>
+                                <td><img style="height:10vh;" class="circle responsive-img" id='profile_pic' src="../../media/{{ other_user.image.avatar }}" /></td>
+                                <td><a href="{%url 'user_profile:index' user_id=other_user.profile.user.id%}">{{other_user.profile.user.firstname}} {{other_user.profile.user.lastname}}</a></td>
+                                <td>{{other_user.profile.city}}, {{other_user.profile.state}}</td>
+                                <td>{{other_user.distance}} miles</td>
+                            </tr>
+                            {%endfor%}
                         </tbody>
                     </table>
                 </div>

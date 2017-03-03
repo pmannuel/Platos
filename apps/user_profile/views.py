@@ -1184,6 +1184,7 @@ def edit_profile(request, user_id):
         uZip = request.POST['postal_code']
         uDesc = request.POST['about_me']
         uDist = request.POST['dist']
+        uGend = request.POST['gender']
 
         url = 'https://maps.googleapis.com/maps/api/geocode/json?address='+ uSt + ','+ uRoute + ',' + uCity + ',' + uState +'&key=AIzaSyBj4eaE79fE1cqdaq1XZALhzxCpKPd2F2I'
         headers={"X-Mashape-Key": "ABCDEFG12345"}
@@ -1197,6 +1198,7 @@ def edit_profile(request, user_id):
             Profile.objects.create(
                 user = user,
                 birthday = request.POST['birthday'],
+                gender = request.POST['gender'],
                 occupation = request.POST['occupation'],
                 company = request.POST['company'],
                 street_number = request.POST['street_number'],
@@ -1207,11 +1209,12 @@ def edit_profile(request, user_id):
                 longtitude = longtitude,
                 latitude = latitude,
                 about_me = request.POST['about_me'],
-                distAway = request.POST['dist']
+                distAway = request.POST['dist'],
             )
         else:
             uProf = Profile.objects.get(user = user)
             uProf.birthday = uBday
+            uProf.gender = uGend
             uProf.occupation = uOccupation
             uProf.company = uCompany
             uProf.street_number = uSt

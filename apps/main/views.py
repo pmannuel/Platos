@@ -55,3 +55,7 @@ def index(request):
             }
 
     return render(request, 'main/index.html', data)
+
+def changedistance(request):
+    if request.method == 'POST':
+        pass

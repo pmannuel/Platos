@@ -11,13 +11,17 @@
 }
 
 #wrapper{
+    display: flex;
+    justify-content: center;
     background-image: url("subtle.png");
     height: 100vh;
+    padding: 0 20%;
 }
 
 #body{
-    margin: 0 16%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: white;
-    padding: 5vh;
-    
+    padding: 20vh 20vh;
 }

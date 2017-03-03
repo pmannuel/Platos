@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from django.db import models
 from ..login_register.models import User, UserManager
+from ..schedules.models import Schedule
 
 
 class Profile(models.Model):
@@ -17,7 +18,7 @@ class Profile(models.Model):
     longtitude = models.FloatField(default=0)
     latitude = models.FloatField(default=0)
     about_me = models.CharField(max_length=500)
-    distAway = models.IntegerField(default=0)
+    distAway = models.IntegerField(default=10)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
 
@@ -33,3 +34,4 @@ class Match(models.Model):
     profile = models.ForeignKey(Profile, default=0, related_name="match_profile")
     distance = models.IntegerField(default=0)
     image = models.ForeignKey(Images, related_name="match_image")
+    schedule = models.ForeignKey(Schedule, related_name="match_schedule")

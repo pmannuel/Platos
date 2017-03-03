@@ -45,10 +45,10 @@ def index(request):
 
         if not 'genderpick' in request.session:
             profile = Profile.objects.get(user = request.session.get('active_user_id'))
-            if profile.gender == "male":
-                genderpick = "female"
-            if profile.gender == "female":
-                genderpick = "male"
+            if profile.gender == "Male":
+                genderpick = "Female"
+            if profile.gender == "Female":
+                genderpick = "Male"
         else:
             genderpick = request.session['genderpick']
         if genderpick == "whatever":

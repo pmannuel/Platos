@@ -9,5 +9,4 @@ urlpatterns = [
     url(r'^edit_profile/resize_image$', views.view_resize, name='view_resize'),
     url(r'^edit_profile/resized$', views.resize, name='resize'),
     url(r'^edit_profile/add_image$', views.image, name='add_image'),
-    url(r'^edit_profile/ADMIN/delete/(?P<del_id>\d+)$', views.delete, name='delete')
 ]

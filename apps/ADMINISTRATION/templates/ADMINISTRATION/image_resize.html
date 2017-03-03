@@ -42,7 +42,7 @@
             {% for u in img %}
             <img id='profile_pic' src = "../../media/{{ u.avatar }}" />
             {% endfor %}
-            <form action="{%url 'user_profile:resize' %}" method="POST" />
+            <form action="{%url 'admin:ADMIN_resize' user_id=user.id %}" method="POST" />
             {% csrf_token %}
             <input type="hidden" name="cropx" id="cropx" value="5" />
             <input type="hidden" name="cropy" id="cropy" value="5" />

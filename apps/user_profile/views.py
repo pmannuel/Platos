@@ -1193,7 +1193,6 @@ def edit_profile(request, user_id):
         data = response.body
         longtitude = data["results"][0]["geometry"]["location"]["lng"]
         latitude = data["results"][0]["geometry"]["location"]["lat"]
-
         uProf = Profile.objects.filter(user = user)
         if not uProf:
             Profile.objects.create(
@@ -1226,6 +1225,7 @@ def edit_profile(request, user_id):
             uProf.latitude = latitude
             uProf.about_me = uDesc
             uProf.save()
+
         return redirect(reverse('user_profile:index', kwargs={'user_id': user_id}))
 
     return render(request, 'user_profile/edit_profile.html', data)

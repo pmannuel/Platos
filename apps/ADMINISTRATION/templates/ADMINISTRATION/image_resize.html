@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load staticfiles %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/resize.css' %}" type="text/css">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/Jcrop.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/Jcrop.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'user_profile/google_places_api.css' %}">
+    <style>
+    .jcrop-active{
+        max-width: 750px;
+        max-height: {{size}}
+    }
+    </style>
+    <script type="text/javascript">
+      jQuery(function($){
+        $('#profile_pic').Jcrop({
+            onChange: addCoords,
+            setSelect: [0,0,250,250],
+            aspectRatio: 1,
+            bgColor: 'red',
+            minSize: [250, 250],
+            maxSize: [250, 250]
+        });
+      });
+      function addCoords(c){
+        $('#cropx').val(c.x);
+        $('#cropy').val(c.y);
+        $('#cropw').val(c.w);
+        $('#croph').val(c.h);
+      }
+    </script>
+    <title>Resize Profile Picture</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="body">
+            {% for u in img %}
+            <img id='profile_pic' src = "../../media/{{ u.avatar }}" />
+            {% endfor %}
+            <form action="{%url 'admin:ADMIN_resize' user_id=user.id %}" method="POST" />
+            {% csrf_token %}
+            <input type="hidden" name="cropx" id="cropx" value="5" />
+            <input type="hidden" name="cropy" id="cropy" value="5" />
+            <input type="hidden" name="cropw" id="cropw" value="5" />
+            <input type="hidden" name="croph" id="croph" value="5" />
+            <br>
+            <input style="height:5vh;width:540px;" type="submit" value="Resize Profile Picture" />
+        </form>
+        </div>
+    </div>
+</body>
+</html>

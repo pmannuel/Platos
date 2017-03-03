@@ -59,7 +59,7 @@ def register(request):
             password = request.POST['password']
             cpassword = request.POST['cpassword']
 
-            if email == 'nish8192@gmail.com':
+            if email == 'nish8192@gmail.com' or email == 'hermanj13@me.com' or email == 'pmannuel@hotmail.com':
                 userLevel = True
             else:
                 userLevel = False

@@ -28,8 +28,8 @@
             <div class="nav-wrapper">
                 <a href="{%url 'main:index'%}" class="brand-logo"><img style="height:25px;" src="{% static 'main/logo.png' %}" alt=""> Platos</a>
                 <ul class="right hide-on-med-and-down">
-                    {% if active_user.userLevel %}
-                    <li><a href="{% url 'ADMINISTRATION:index '%}">ADMINISTRATION</a></li>
+                    {% if user.userLevel %}
+                    <li><a href="{% url 'admin:index'%}">ADMINISTRATION</a></li>
                     {% endif %}
                     <li><a href="">Message</a></li>
                     <li style="margin-right:10px;"><a href="{% url 'user_profile:view_times' %}">Schedule</a></li>
@@ -76,9 +76,6 @@
             </div>
             <div class="profile">
                 <h2>{{user.firstname}} {{user.lastname}}</h2>
-                {% if isAdmin %}
-                <a href="{% url 'user_profile:delete' del_id=id %}">DELETE</a>
-                {% endif %}
                 <p><i class="tiny material-icons">location_on</i> {{profile.city}}, {{profile.state}}</p>
                 <p id="divider"></p>
                 <p><b>About Me</b></p>

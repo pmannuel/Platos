@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit {{user.firstname}}'s Profile</title>
+</head>
+<body>
+    <form action="{% url 'admin:ADMIN_save' user_id=user.id %}" method="post">
+        {% csrf_token %}
+    <p>First Name: <input name='fname' type="text" value="{{user.firstname}}" required></p>
+    <p>Last Name: <input name='lname' type="text" value="{{user.lastname}}" required></p>
+    <p>Email: <input name='email' type="text" value="{{user.email}}" required></p>
+    {% if profile %}
+    <p>Occupation: <input name='occupation' type="text" value="{{profile.occupation}}" required></p>
+    <p>Company: <input name='company' type="text" value="{{profile.occupation}}" required></p>
+    {% endif %}
+    <input type="submit" value="SAVE CHANGES">
+    </form>
+    <a href="{% url 'admin:index' %}">Return to ADMIN Page</a>
+</body>
+</html>

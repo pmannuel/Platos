@@ -9,8 +9,8 @@
 .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
 .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
 .tg .tg-baqh{text-align:center;vertical-align:top}
-.tg .tg-fiaw{font-weight:bold;font-size:100%;background-color:#000000;color:#ffffff;text-align:center;vertical-align:top}
-.tg .tg-m1tb{font-weight:bold;background-color:#000000;color:#ffffff;text-align:center;vertical-align:top}
+.tg .tg-fiaw{text-align:center;font-weight:bold;font-size:100%;background-color:#000000;color:#ffffff;text-align:center;vertical-align:top}
+.tg .tg-m1tb{text-align:center;font-weight:bold;background-color:#000000;color:#ffffff;text-align:center;vertical-align:top}
 </style>
     <title>PLATOS ADMINISTRATION</title>
 </head>
@@ -22,21 +22,31 @@
     <th class="tg-m1tb">First Name</th>
     <th class="tg-m1tb">Last Name</th>
     <th class="tg-fiaw">Email</th>
+    <th class="tg-fiaw">USER LEVEL</th>
     <th class="tg-m1tb">Created On</th>
     <th class="tg-m1tb">Updated On</th>
     <th class="tg-m1tb">Actions</th>
   </tr>
   {% for user in users %}
   <tr>
-    <td class="tg-baqh">{{user.id}}</td>
-    <td class="tg-baqh">{{user.firstname}}</td>
-    <td class="tg-baqh">{{user.lastname}}</td>
-    <td class="tg-baqh">{{user.email}}</td>
+    <td class="tg-baqh"><a href="{% url 'admin:ADMIN_edit' user_id=user.id %}">{{user.id}}</a></td>
+    <td class="tg-baqh"><a href="{% url 'admin:ADMIN_edit' user_id=user.id %}">{{user.firstname}}</a></td>
+    <td class="tg-baqh"><a href="{% url 'admin:ADMIN_edit' user_id=user.id %}">{{user.lastname}}</a></td>
+    <td class="tg-baqh"><a href="{% url 'admin:ADMIN_edit' user_id=user.id %}">{{user.email}}</a></td>
+    {% if user.userLevel %}
+    <td class="tg-baqh">AMINISTRATOR</td>
+    {% else %}
+    <td class="tg-baqh">USER</td>
+    {% endif %}
     <td class="tg-baqh">{{user.created_at}}</td>
     <td class="tg-baqh">{{user.updated_at}}</td>
-    <td class="tg-baqh">{{user.id}}</td>
+    <td class="tg-baqh"><a href="{% url 'admin:ADMIN_edit' user_id=user.id %}">EDIT</a>
+    {% if not user.id == request.session.active_user_id %}| <a href="{% url 'admin:ADMIN_delete' user_id=user.id %}">DELETE</a>{% endif %}
+    {% if not user.userLevel %}<a href="{% url 'admin:ADMIN_makeadmin' user_id=user.id %}"><p>MAKE ADMIN</p></a></td>{% endif %}
+
   </tr>
   {% endfor %}
 </table>
+<p><a href="{% url 'main:index' %}">Return to Main Page</a></p>
 </body>
 </html>

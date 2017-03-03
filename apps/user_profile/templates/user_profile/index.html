@@ -57,6 +57,9 @@
             </div>
             <div class="profile">
                 <h2>{{user.firstname}} {{user.lastname}}</h2>
+                {% if isAdmin %}
+                <a href="{% url 'user_profile:delete' del_id=id %}">DELETE</a>
+                {% endif %}
                 <p><i class="tiny material-icons">location_on</i> {{profile.city}}, {{profile.state}}</p>
                 <p id="divider"></p>
                 <p><b>About Me</b></p>

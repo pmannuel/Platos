@@ -41,6 +41,7 @@ class UserManager(models.Manager):
           return error_messages
 
 class User(models.Model):
+    userLevel = models.BooleanField(default = False)
     firstname = models.CharField(max_length=45)
     lastname = models.CharField(max_length=45, default="poopyhead")
     email = models.CharField(max_length=45)

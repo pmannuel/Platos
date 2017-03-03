@@ -13,14 +13,29 @@ def index(request, user_id):
     if not prof:
         data = {
             "user" : User.objects.get(id=user_id),
-           'img' : Images.objects.filter(user_id = user_id)
+           'img' : Images.objects.filter(user_id = user_id),
+           'isAdmin': user.userLevel,
+           'id': user_id
             }
     else:
         data = {
             "user" : User.objects.get(id=user_id),
             "profile" : Profile.objects.get(user_id=user_id),
-            'img' : Images.objects.filter(user_id = user_id)
+            'img' : Images.objects.filter(user_id = user_id),
+            'id': user_id,
+            'isAdmin': user.userLevel
             }
+    return render(request, 'user_profile/index.html', data)
+
+def delete(request, del_id):
+    User.objects.get(id = del_id).delete()
+    data = {
+        "user" : User.objects.get(id=user_id),
+        "profile" : Profile.objects.get(user_id=user_id),
+        'img' : Images.objects.filter(user_id = user_id),
+        'id': user_id,
+        'isAdmin': user.userLevel
+        }
     return render(request, 'user_profile/index.html', data)
 
 def view_resize(request):

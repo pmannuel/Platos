@@ -39,7 +39,6 @@
 <body>
     <div id="wrapper">
         <div id="body">
-            <h1>Resize Profile</h1>
             {% for u in img %}
             <img id='profile_pic' src = "../../media/{{ u.avatar }}" />
             {% endfor %}
@@ -49,7 +48,8 @@
             <input type="hidden" name="cropy" id="cropy" value="5" />
             <input type="hidden" name="cropw" id="cropw" value="5" />
             <input type="hidden" name="croph" id="croph" value="5" />
-            <input type="submit" value="Resize Profile Picture" />
+            <br>
+            <input style="height:5vh;width:540px;" type="submit" value="Resize Profile Picture" />
         </form>
         </div>
     </div>

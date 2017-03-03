@@ -1,0 +1,58 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    /*outline: 1px solid yellow;*/
+}
+
+#wrapper{
+    background-image: url("subtle.png");
+}
+
+/*****HEADER*****/
+
+div.nav-wrapper{
+    background-color:  #15253B;
+    color: #15253B;
+    box-shadow: inset 2px -5px 11px #344771;
+}
+
+/*****BODY*****/
+#body{
+    margin: 0 16%;
+    background-color: white;
+    padding: 5vh;
+    /*text-align: center;*/
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #CFC3EB;
+    margin: 1em 0;
+    padding: 0;
+    margin: 4vh 0;
+}
+
+h2{
+    margin-bottom: 2vh;
+    font-weight: lighter;
+}
+
+div.section1{
+    display: flex;
+}
+
+form.profpic{
+    margin-left: 1.7vh;
+}
+
+#basic_info_table td{
+    padding-bottom: 1vh;
+    padding-right: 3vh;
+}
+
+#basic_info_table td input{
+    width: 100%;
+}

@@ -37,18 +37,21 @@
     <title>Resize Profile Picture</title>
 </head>
 <body>
-    <h1>Resize Profile</h1>
-    <p>New Picture</p>
-    {% for u in img %}
-      <img id='profile_pic' src = "../../media/{{ u.avatar }}" />
-    {% endfor %}
-    <form action="{%url 'user_profile:resize' %}" method="POST" />
-        {% csrf_token %}
-        <input type="hidden" name="cropx" id="cropx" value="5" />
-        <input type="hidden" name="cropy" id="cropy" value="5" />
-        <input type="hidden" name="cropw" id="cropw" value="5" />
-        <input type="hidden" name="croph" id="croph" value="5" />
-        <input type="submit" value="Resize Profile Picture" />
-    </form>
+    <div id="wrapper">
+        <div id="body">
+            <h1>Resize Profile</h1>
+            {% for u in img %}
+            <img id='profile_pic' src = "../../media/{{ u.avatar }}" />
+            {% endfor %}
+            <form action="{%url 'user_profile:resize' %}" method="POST" />
+            {% csrf_token %}
+            <input type="hidden" name="cropx" id="cropx" value="5" />
+            <input type="hidden" name="cropy" id="cropy" value="5" />
+            <input type="hidden" name="cropw" id="cropw" value="5" />
+            <input type="hidden" name="croph" id="croph" value="5" />
+            <input type="submit" value="Resize Profile Picture" />
+        </form>
+        </div>
+    </div>
 </body>
 </html>

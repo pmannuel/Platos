@@ -5,83 +5,126 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://jcrop-cdn.tapmodo.com/v2.0.0-RC1/js/Jcrop.js"></script>
-<link rel="stylesheet" href="http://jcrop-cdn.tapmodo.com/v2.0.0-RC1/css/Jcrop.css" type="text/css">
+    <script src="http://jcrop-cdn.tapmodo.com/v2.0.0-RC1/js/Jcrop.js"></script>
+    <link rel="stylesheet" href="http://jcrop-cdn.tapmodo.com/v2.0.0-RC1/css/Jcrop.css" type="text/css">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{user.firstname}} {{user.lastname}}</title>
     {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'user_profile/edit_profile.css' %}">
     <link rel="stylesheet" href="{% static 'user_profile/google_places_api.css' %}">
 </head>
 
 <body>
     <div id="wrapper">
-        <div class="nav-wrapper">
-        </div>
         <div id="body">
             <h1>Edit Profile</h1>
-            <p>Profile Picture</p>
-            {% for u in img %}
-
-              <img id='profile_pic' src = "../../media/{{ u.avatar }}" />
-
-            {% endfor %}
-            {% block content %}
-            <form action="{%url 'user_profile:add_image' %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="Change Profile Picture" />
-            </form>
-            {% endblock %}
-
+            <hr>
+            <h2>Profile Photo</h2>
+            <div class="section1">
+                {% for u in img %}
+                <img style="height:15vh;" id='profile_pic' src = "../../media/{{ u.avatar }}" />
+                {% endfor %}
+                {% block content %}
+                <form class="profpic" action="{%url 'user_profile:add_image' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <br>
+                    <input style="width: 9vh;" type="submit" value="Upload" />
+                </form>
+                {% endblock %}
+            </div>
             <form class="user_profile" action="{%url 'user_profile:edit_profile' user_id=user.id%}" method="post">
                 {% csrf_token %}
-                <p>First name</p><input type="text" name="first_name" value="{{user.firstname}}" disabled="True">
-                <p>Last name</p><input type="text" name="last_name" value="{{user.lastname}}" disabled="True">
-                <p>Email</p><input type="text" name="email" value="{{user.email}}" disabled="True">
-                <p>Gender</p>
-                <select name="gender">
-                  <option value="" disabled selected>Gender</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                </select>
-                <p>Birthday</p><input type="date" name="birthday" value={{bday}}>
-                <p>Occupation</p><input type="text" name="occupation" value="{{profile.occupation}}">
-                <p>Company/School</p><input type="text" name="company" value="{{profile.company}}">
-                <p>Address</p>
-                <div id="locationField">
-                    <input id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text"></input>
-                </div>
-                <table id="address">
+                <div class="section">
+            <hr>
+                <h2>Basic Information</h2>
+                <table id="basic_info_table">
                     <tr>
-                        <td class="label">Street address</td>
-                        <td class="slimField"><input class="field" name="street_number" id="street_number" disabled="true"></input>
-                        </td>
-                        <td class="wideField" colspan="2"><input class="field" name="route" id="route" disabled="true"></input>
+                        <td>First name</td>
+                        <td><input type="text" name="first_name" value="{{user.firstname}}" disabled="True"></td>
+                    </tr>
+                    <tr>
+                        <td>Last name</td>
+                        <td><input type="text" name="last_name" value="{{user.lastname}}" disabled="True"></td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td><input type="text" name="email" value="{{user.email}}" disabled="True"></td>
+                    </tr>
+                    <tr>
+                        <td>Birthday</td>
+                        <td><input type="date" name="birthday" value={{bday}}></td>
+                    </tr>
+                    <tr>
+                        <td>Gender</td>
+                        <td>
+                        <select name="gender">
+                        <option value="" disabled selected>Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        </select>
                         </td>
                     </tr>
                     <tr>
-                        <td class="label">City</td>
-                        <td class="wideField" colspan="3"><input class="field" name="city" id="locality" disabled="true"></input>
+                        <td>Occupation</td>
+                        <td><input type="text" name="occupation" value="{{profile.occupation}}"></td>
+                    </tr>
+                    <tr>
+                        <td>Company/School</td>
+                        <td><input type="text" name="company" value="{{profile.company}}"></td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td>
+                            <div id="locationField">
+                            <input id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text"></input>
+                            </div>
                         </td>
                     </tr>
                     <tr>
-                        <td class="label">State</td>
-                        <td class="slimField"><input class="field" name="state" id="administrative_area_level_1" disabled="true"></input>
-                        </td>
-                        <td class="label">Zip code</td>
-                        <td class="wideField"><input class="field" name="postal_code" id="postal_code" disabled="true"></input>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="label">Country</td>
-                        <td class="wideField" colspan="3"><input class="field" id="country" disabled="true"></input>
+                        <td></td>
+                        <td>
+                            <table id="address">
+                                <tr>
+                                    <td class="label">Street address</td>
+                                    <td class="slimField"><input class="field" name="street_number" id="street_number" disabled="true"></input>
+                                    </td>
+                                    <td class="wideField" colspan="2"><input class="field" name="route" id="route" disabled="true"></input>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">City</td>
+                                    <td class="wideField" colspan="3"><input class="field" name="city" id="locality" disabled="true"></input>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">State</td>
+                                    <td class="slimField"><input class="field" name="state" id="administrative_area_level_1" disabled="true"></input>
+                                    </td>
+                                    <td class="label">Zip code</td>
+                                    <td class="wideField"><input class="field" name="postal_code" id="postal_code" disabled="true"></input>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Country</td>
+                                    <td class="wideField" colspan="3"><input class="field" id="country" disabled="true"></input>
+                                    </td>
+                                </tr>
+                            </table>
                         </td>
                     </tr>
                 </table>
-                <p>About me</p>
+            </div>
+            <hr>
+            <div class="section">
+            <h2>About Me</h2>
                 <textarea name="about_me" rows="8" cols="80">{{profile.about_me}}</textarea>
-                <p>Maximum Search Distance</p><input type="text" name="dist" value="{{profile.distAway}}">
-                <p><input type="submit" name="submit" value="Update Profile"></p>
+            </div>
+            <hr>
+            <h2>Done?</h2>
+                <input style="height:5vh;width:15vh;" type="submit" name="submit" value="Update Profile">
+                &nbsp or &nbsp
+                <a href="{%url 'main:index' %}"><button style="height:5vh;width:15vh;" type="button" name="button">Home</button></a>
             </form>
         </div>
     </div>

@@ -75,7 +75,9 @@ def index(request):
         data = {
             "user" : User.objects.get(id=user_id),
             "profile" : user,
-            "other_users" : match,
+
+            "other_users" : Match.objects.filter(this_user_id=user_id).filter(distance__lte=setDistance),
+
             'flag' : True,
             'img' : Images.objects.filter(user_id = user_id),
             'genderpick' : genderpick,

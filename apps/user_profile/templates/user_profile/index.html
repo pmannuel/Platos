@@ -29,9 +29,16 @@
                 <a href="{%url 'main:index'%}" class="brand-logo"><img style="height:25px;" src="{% static 'main/logo.png' %}" alt=""> Platos</a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="">Message</a></li>
-                    <li><a href="{% url 'user_profile:view_times' %}">Schedule</a></li>
+                    <li style="margin-right:10px;"><a href="{% url 'user_profile:view_times' %}">Schedule</a></li>
                     <!-- Dropdown Trigger -->
-                    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Hello, {{user.firstname}} !<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li>{%for u in AU_img%}
+                        <img class="circle" style="height:5vh;margin-top:8px;" id='profile_pic' src="../../media/{{ u.avatar }}" />
+                    </li>
+                    {% endfor %}
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">
+                  Hello, {{active_user.firstname}} !<i class="material-icons right">arrow_drop_down</i>
+                </a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -40,20 +47,29 @@
               {% for u in img%}
                 <img id='profile_pic' src = "../../media/{{ u.avatar }}" />
               {% endfor %}
-                <table>
-                    <tr>
-                        <th>Occupation:</th>
-                        <td>{{profile.occupation}}</td>
-                    </tr>
-                    <tr>
-                        <th>Company:</th>
-                        <td>{{profile.company}}</td>
-                    </tr>
-                    <tr>
-                        <th>Birthday:</th>
-                        <td>{{profile.birthday}}</td>
-                    </tr>
-                </table>
+              <div class="left-bar-content">
+                  {% if not user.id == active_user.id %}
+                  <a style="width:100%;margin:1vh 0;" class="waves-effect waves-light btn"><i class="material-icons left">message</i>Message</a>
+                  {% endif %}
+                  <table>
+                      <tr>
+                          <th>Gender:</th>
+                          <td>{{profile.gender}}</td>
+                      </tr>
+                      <tr>
+                          <th>Birthday:</th>
+                          <td>{{profile.birthday}}</td>
+                      </tr>
+                      <tr>
+                          <th>Occupation:</th>
+                          <td>{{profile.occupation}}</td>
+                      </tr>
+                      <tr>
+                          <th>Company:</th>
+                          <td>{{profile.company}}</td>
+                      </tr>
+                  </table>
+              </div>
             </div>
             <div class="profile">
                 <h2>{{user.firstname}} {{user.lastname}}</h2>

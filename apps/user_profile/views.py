@@ -19,8 +19,10 @@ def index(request, user_id):
             }
     else:
         data = {
+            "active_user": User.objects.get(id=request.session['active_user_id']),
             "user" : User.objects.get(id=user_id),
             "profile" : Profile.objects.get(user_id=user_id),
+            'AU_img' : Images.objects.filter(user_id = request.session['active_user_id']),
             'img' : Images.objects.filter(user_id = user_id),
             'id': user_id,
             'isAdmin': user.userLevel
@@ -1183,7 +1185,6 @@ def edit_profile(request, user_id):
         uBday = request.POST['birthday']
         uZip = request.POST['postal_code']
         uDesc = request.POST['about_me']
-        uDist = request.POST['dist']
         uGend = request.POST['gender']
 
         url = 'https://maps.googleapis.com/maps/api/geocode/json?address='+ uSt + ','+ uRoute + ',' + uCity + ',' + uState +'&key=AIzaSyBj4eaE79fE1cqdaq1XZALhzxCpKPd2F2I'
@@ -1209,7 +1210,6 @@ def edit_profile(request, user_id):
                 longtitude = longtitude,
                 latitude = latitude,
                 about_me = request.POST['about_me'],
-                distAway = request.POST['dist'],
             )
         else:
             uProf = Profile.objects.get(user = user)
@@ -1225,7 +1225,6 @@ def edit_profile(request, user_id):
             uProf.longtitude = longtitude
             uProf.latitude = latitude
             uProf.about_me = uDesc
-            uProf.distAway = uDist
             uProf.save()
         return redirect(reverse('user_profile:index', kwargs={'user_id': user_id}))
 

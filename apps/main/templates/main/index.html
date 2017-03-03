@@ -43,8 +43,9 @@
             </nav>
             <div id="body">
                 <div id="top-content">
-                    <h1>Welcome back!</h1> {% if flag %}
-                    <h5 style="margin-left:40px;">{{profile.user.firstname}} {{profile.user.lastname}} <i class="small material-icons">location_on</i> {{profile.city}}, {{profile.state}}</h5>
+                    {% if flag %}
+                    <h1>Welcome back!</h1>
+                    <h5 style="margin-left:40px;">{{profile.user.firstname}} {{profile.user.lastname}}<i class="small material-icons">location_on</i> {{profile.city}}, {{profile.state}}</h5>
                     <div style="margin-left:40px;" id="sub">
                         <div style="margin-right:40px;" class="filter">
                             <label>Set Maximum Distance</label>
@@ -89,9 +90,22 @@
                     </table>
                 </div>
                 {% else %}
-                <h3>Your info is incomplete!</h3>
-                <h3>Would you like to update?</h3>
-                <h3><a href="{%url 'user_profile:edit_profile' user_id=user.id %}">Take There!</a></h3> {% endif %}
+                <div style="text-align:center;height:100vh;" class="top-head">
+                    <br>
+                    <br>
+                    <br>
+                    <img style="height:5vh;" src="{% static 'main/logo.png' %}" alt="">
+                    <h1>Welcome to Platos, <b>{{user.firstname}}</b>!</h1>
+                    <br>
+                    <h3>Let's complete your profile.</h3>
+                    <br>
+                    <img src="{% static 'main/welcome.gif' %}" alt="">
+                    <br>
+                    <br>
+                    <br>
+                    <a href="{%url 'user_profile:edit_profile' user_id=user.id %}" class="waves-effect waves-light btn-large"><i class="material-icons right">visibility</i>edit profile</a>
+                </div>
+                {% endif %}
             </div>
         </div>
     </body>

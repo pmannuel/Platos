@@ -52,38 +52,42 @@ def index(request):
         else:
             genderpick = request.session['genderpick']
         if genderpick == "whatever":
-            match = Match.objects.filter(this_user_id=user_id).filter(distance__gte=setDistance)
+            match = Match.objects.filter(this_user_id=user_id).filter(distance__lte=setDistance)
         else:
-            match = Match.objects.filter(this_user_id=user_id).filter(distance__gte=setDistance).filter(profile__gender=genderpick)
+            match = Match.objects.filter(this_user_id=user_id).filter(distance__lte=setDistance).filter(profile__gender=genderpick)
         # if not 'interestday' in request.session:
         #     day = 'mon'
         # else:
         #     day = request.session['interestday']
+        # times = ['0to1','1to2','2to3','3to4','4to5','5to6','6to7','7to8','8to9','9to10','10to11','11to12','12to13','13to14','14to15','15to16','16to17','17to18','18to19','19to20','20to21','22to23','23to0']
         # if day == 'mon':
         #     exclude = ""
         #     i = 0
         #     while i < 23:
-        #         check = 'mon__h' + str(i) + 'to' + str(i+1)
-        #         if Schedule.objects.filter(user_id = request.session.get('active_user_id')).filter(**{ check: False }):
-        #             exclude += ".exclude(" + check + ")"
+        #         check = 'mon__h9to10'
+        #         if Schedule.objects.filter(user_id = request.session.get('active_user_id')).filter(**{ check: True }):
+        #             check = 'mon__h9to10'
+        #             Monday = Schedule.objects.all().filter(**{ check: True })
+        #             match = Monday.filter(match_schedule__this_user= request.session.get('active_user_id')).filter(match_schedule__distance__gte=setDistance).distinct()
+        #             for (let i = 0, i < len(match))
         #         i += 1
-        #     if Schedule.objects.filter(user_id = request.session.get('active_user_id')).filter(mon__h23to0 = False):
-        #         exclude += ".exclude(" + check + ")"
-        #     print exclude
-
         # will edit in the morning, am going to change to array values for ease of use
         data = {
             "user" : User.objects.get(id=user_id),
             "profile" : user,
-
-            "other_users" : Match.objects.filter(this_user_id=user_id).filter(distance__lte=setDistance),
-
+            "other_users" : match,
             'flag' : True,
             'img' : Images.objects.filter(user_id = user_id),
             'genderpick' : genderpick,
-            'day' : day
+            # 'day' : day
             }
-
+        # print request.session.get('active_user_id')
+        # print len(match)
+        # user = match[1]
+        # match = Match.objects.filter(profile_id=user.id)
+        # print len(match)
+        # print match
+        # print match[0].profile.user.firstname
     else:
         data = {
             "user" : User.objects.get(id=user_id),
@@ -99,5 +103,5 @@ def changedistance(request):
         profile.distAway = request.POST['distance']
         profile.save()
         request.session['genderpick'] = request.POST['gender']
-        request.session['interestday'] = request.POST['day']
+        # request.session['interestday'] = request.POST['day']
     return redirect(reverse('main:index'))

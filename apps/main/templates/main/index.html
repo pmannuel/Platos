@@ -70,7 +70,7 @@
                       <option value="whatever">Whatever</option>
                     </select>
                         </div>
-                        <div class="filter">
+                        <!-- <div class="filter">
                             <label>Interested Day?</label>
                             <select name="day" style="width:200px;" class="browser-default">
                       <option value="{{day}}">Day</option>
@@ -81,10 +81,10 @@
                       <option value="fri">Friday</option>
                       <option value="sat">Saturday</option>
                       <option value="sun">Sunday</option>
-                    </select>
+                    </select> -->
                     <input type="submit" name="submit" value="Update Profile">
                   </form>
-                        </div>
+                        <!-- </div> -->
                     </div>
                 </div>
                 <div id="matches">
@@ -98,14 +98,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {%for other_user in other_users%}
-                            <tr>
-                                <td><img style="height:10vh;" class="circle responsive-img" id='profile_pic' src="../../media/{{ other_user.image.avatar }}" /></td>
-                                <td><a href="{%url 'user_profile:index' user_id=other_user.profile.user.id%}">{{other_user.profile.user.firstname}} {{other_user.profile.user.lastname}}</a></td>
-                                <td>{{other_user.profile.city}}, {{other_user.profile.state}}</td>
-                                <td>{{other_user.distance}} miles</td>
-                            </tr>
-                            {%endfor%}
+                          {%for other_user in other_users%}
+                          <tr>
+                              <td><img style="height:10vh;" class="circle responsive-img" id='profile_pic' src="../../media/{{ other_user.image.avatar }}" /></td>
+                              <td><a href="{%url 'user_profile:index' user_id=other_user.profile.user.id%}">{{other_user.profile.user.firstname}} {{other_user.profile.user.lastname}}</a></td>
+                              <td>{{other_user.profile.city}}, {{other_user.profile.state}}</td>
+                              <td>{{other_user.distance}} miles</td>
+                          </tr>
+                          {%endfor%}
                         </tbody>
                     </table>
                 </div>

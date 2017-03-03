@@ -81,7 +81,7 @@ def index(request):
             'flag' : True,
             'img' : Images.objects.filter(user_id = user_id),
             'genderpick' : genderpick,
-            'day' : day
+            # 'day' : day
             }
 
     else:

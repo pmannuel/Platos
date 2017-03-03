@@ -7,11 +7,11 @@ from ..user_profile.models import Images, Profile
 
 def index(request):
     # request.session.clear()
-    admin = User.objects.filter(email = 'ADMIN')
-    if not admin:
-        adminUser = User.objects.create(userLevel = True, firstname = 'ADMIN', lastname = 'ADMIN', email = 'ADMIN', password = 'NishJakePris')
-        Profile.objects.create(user = adminUser, birthday = '1992-08-01', occupation = 'ADMIN', company = 'ADMIN', street_number = '9503', route = 'Peniwill Drive', city = 'Lorton', state = 'VA', postal_code='22079', latitude = 38.7043715, longtitude = -77.2732501,
-         about_me="ADMIN", distAway = 500)
+    # admin = User.objects.filter(email = 'ADMIN')
+    # if not admin:
+    #     adminUser = User.objects.create(userLevel = True, firstname = 'ADMIN', lastname = 'ADMIN', email = 'ADMIN', password = 'NishJakePris')
+    #     Profile.objects.create(user = adminUser, birthday = '1992-08-01', occupation = 'ADMIN', company = 'ADMIN', street_number = '9503', route = 'Peniwill Drive', city = 'Lorton', state = 'VA', postal_code='22079', latitude = 38.7043715, longtitude = -77.2732501,
+    #      about_me="ADMIN", distAway = 500)
     if not 'active_user_id' in request.session:
         return render(request, 'login_register/index.html')
     else:
@@ -22,14 +22,14 @@ def logout(request):
     return redirect(reverse('login_register:index'))
 
 def login(request):
-    if request.POST['email'] == 'ADMIN' and request.POST['password'] == 'NishJakePris':
-        chk_email = request.POST['email']
-        chk_password = request.POST['password']
-        user_active = User.objects.get(email = chk_email)
-        request.session['active_user_id'] = user_active.id
-        Profile.objects.create(user = user_active, birthday = '1992-08-01', occupation = 'ADMIN', company = 'ADMIN', street_number = '9503', route = 'Peniwill Drive', city = 'Lorton', state = 'VA', postal_code='22079', latitude = 38.7043715, longtitude = -77.2732501,
-         about_me="ADMIN", distAway = 500)
-        return redirect(reverse('main:index'))
+    # if request.POST['email'] == 'ADMIN' and request.POST['password'] == 'NishJakePris':
+    #     chk_email = request.POST['email']
+    #     chk_password = request.POST['password']
+    #     user_active = User.objects.get(email = chk_email)
+    #     request.session['active_user_id'] = user_active.id
+    #     Profile.objects.create(user = user_active, birthday = '1992-08-01', occupation = 'ADMIN', company = 'ADMIN', street_number = '9503', route = 'Peniwill Drive', city = 'Lorton', state = 'VA', postal_code='22079', latitude = 38.7043715, longtitude = -77.2732501,
+    #      about_me="ADMIN", distAway = 500)
+    #     return redirect(reverse('main:index'))
     if not 'active_user_id' in request.session:
         if request.method == "POST":
             chk_email = request.POST['email']

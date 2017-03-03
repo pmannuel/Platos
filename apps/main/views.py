@@ -42,7 +42,7 @@ def index(request):
         data = {
             "user" : User.objects.get(id=user_id),
             "profile" : user,
-            "other_users" : Match.objects.filter(this_user_id=user_id).filter(distance__lte=setDistance),
+            "other_users" : Match.objects.filter(this_user_id=user_id).filter(distance__gte=setDistance),
             'flag' : True,
             'img' : Images.objects.filter(user_id = user_id)
             }

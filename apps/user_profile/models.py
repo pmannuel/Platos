@@ -6,6 +6,7 @@ from ..login_register.models import User, UserManager
 class Profile(models.Model):
     user = models.ForeignKey(User, related_name="user_profile")
     birthday = models.DateField(default=False)
+    gender = models.CharField(max_length=6)
     occupation = models.CharField(max_length=255)
     company = models.CharField(max_length=255)
     street_number = models.CharField(max_length=255)

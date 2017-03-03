@@ -47,22 +47,29 @@
                     <h5 style="margin-left:40px;">{{profile.user.firstname}} {{profile.user.lastname}} <i class="small material-icons">location_on</i> {{profile.city}}, {{profile.state}}</h5>
                     <div style="margin-left:40px;" id="sub">
                         <div style="margin-right:40px;" class="filter">
+                          <form action="{%url 'main:alter' %}" method="post">
+                            {% csrf_token %}
                             <label>Set Maximum Distance</label>
-                            <select style="width:200px;" class="browser-default">
+                            <select name="distance" style="width:200px;" class="browser-default">
                           <option value="" disabled selected>Maximum Distance</option>
-                          <option value="1">Option 1</option>
-                          <option value="2">Option 2</option>
-                          <option value="3">Option 3</option>
+                          <option value="5">5 Miles</option>
+                          <option value="10">10 Miles</option>
+                          <option value="25">25 Miles</option>
+                          <option value="50">50 Miles</option>
+                          <option value="100">100 Miles</option>
+                          <option value="250">250 Miles</option>
                         </select>
                         </div>
                         <div class="filter">
                             <label>Interested In</label>
-                            <select style="width:200px;" class="browser-default">
+                            <select name="Gender" style="width:200px;" class="browser-default">
                       <option value="" disabled selected>Gender</option>
-                      <option value="1">Male</option>
-                      <option value="2">Female</option>
-                      <option value="3">Whatever</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="whatever">Whatever</option>
                     </select>
+                    <input type="submit" name="submit" value="Update Profile">
+                  </form>
                         </div>
                     </div>
                 </div>

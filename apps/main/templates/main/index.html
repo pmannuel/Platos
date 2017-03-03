@@ -1,75 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{profile.user.firstname}} {{profile.user.lastname}}</title>
     {% load staticfiles %}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'main/index.css' %}" >
-<body>
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="{% static 'js/materialize.js' %}"></script>
-    <script src="{% static 'js/init.js' %}"></script>
-    <div id="wrapper">
-        <ul id='dropdown1' class='dropdown-content'>
-            <li><a href="{%url 'user_profile:index' user_id=user.id%}">My Profile</a></li>
-            <li><a href="{%url 'user_profile:edit_profile' user_id=user.id%}">Edit Profile</a></li>
-            <li class="divider"></li>
-            <li><a href="{%url 'login_register:logout'%}">Log Out</a></li>
-        </ul>
-        <nav>
-            <div class="nav-wrapper">
-                <a href="{%url 'main:index'%}" class="brand-logo"><img style="height:25px;" src="{% static 'main/logo.png' %}" alt=""> Platos</a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="">Message</a></li>
-                    <li><a href="{% url 'user_profile:view_times' %}">Schedule</a></li>
-                    <!-- Dropdown Trigger -->
-                    <li>{%for u in img%}<a class="dropdown-button" href="#!" data-activates="dropdown1">
-                      <img id='profile_pic' src = "../../media/{{ u.avatar }}" />Hello, {{user.firstname}} !<i class="material-icons right">arrow_drop_down</i>
+    <link rel="stylesheet" href="{% static 'main/index.css' %}">
+
+    <body>
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="{% static 'js/materialize.js' %}"></script>
+        <script src="{% static 'js/init.js' %}"></script>
+        <div id="wrapper">
+            <ul id='dropdown1' class='dropdown-content'>
+                <li><a href="{%url 'user_profile:index' user_id=user.id%}">My Profile</a></li>
+                <li><a href="{%url 'user_profile:edit_profile' user_id=user.id%}">Edit Profile</a></li>
+                <li class="divider"></li>
+                <li><a href="{%url 'login_register:logout'%}">Log Out</a></li>
+            </ul>
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="{%url 'main:index'%}" class="brand-logo"><img style="height:25px;" src="{% static 'main/logo.png' %}" alt=""> Platos</a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="">Message</a></li>
+                        <li style="margin-right:10px;"><a href="{% url 'user_profile:view_times' %}">Schedule</a></li>
+                        <!-- Dropdown Trigger -->
+                        <li>{%for u in img%}
+                            <img class="circle" style="height:5vh;margin-top:8px;" id='profile_pic' src="../../media/{{ u.avatar }}" />
+                        </li>
+                        {% endfor %}
+                        <li><a class="dropdown-button" href="#!" data-activates="dropdown1">
+                      Hello, {{user.firstname}} !<i class="material-icons right">arrow_drop_down</i>
                     </a>
-                    {% endfor %}
-                  </li>
-                </ul>
-            </div>
-        </nav>
-        <div id="body">
-            <h1>Welcome back!</h1>
-            {% if flag %}
-            <h5>{{profile.user.firstname}} {{profile.user.lastname}} <i class="small material-icons">location_on</i> {{profile.city}}, {{profile.state}}</h5>
-            <div id="matches">
-                <table class="centered" class="striped">
-                    <thead>
-                        <tr>
-                            <th>Photo</th>
-                            <th>Name</th>
-                            <th>Location</th>
-                            <th>Distance</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {%for other_user in other_users%}
-                        <tr>
-                            <td><img id='profile_pic' src = "../../media/{{ other_user.image.avatar }}" /></td>
-                            <td><a href="{%url 'user_profile:index' user_id=other_user.profile.user.id%}">{{other_user.profile.user.firstname}} {{other_user.profile.user.lastname}}</a></td>
-                            <td>{{other_user.profile.city}}, {{other_user.profile.state}}</td>
-                            <td>{{other_user.distance}} miles</td>
-                        </tr>
-                        {%endfor%}
-                    </tbody>
-                </table>
-            </div>
-            {% else %}
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div id="body">
+                <div id="top-content">
+                    <h1>Welcome back!</h1> {% if flag %}
+                    <h5 style="margin-left:40px;">{{profile.user.firstname}} {{profile.user.lastname}} <i class="small material-icons">location_on</i> {{profile.city}}, {{profile.state}}</h5>
+                    <div style="margin-left:40px;" id="sub">
+                        <div style="margin-right:40px;" class="filter">
+                            <label>Set Maximum Distance</label>
+                            <select style="width:200px;" class="browser-default">
+                          <option value="" disabled selected>Maximum Distance</option>
+                          <option value="1">Option 1</option>
+                          <option value="2">Option 2</option>
+                          <option value="3">Option 3</option>
+                        </select>
+                        </div>
+                        <div class="filter">
+                            <label>Interested In</label>
+                            <select style="width:200px;" class="browser-default">
+                      <option value="" disabled selected>Gender</option>
+                      <option value="1">Male</option>
+                      <option value="2">Female</option>
+                      <option value="3">Whatever</option>
+                    </select>
+                        </div>
+                    </div>
+                </div>
+                <div id="matches">
+                    <table class="centered" class="striped">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Name</th>
+                                <th>Location</th>
+                                <th>Distance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {%for other_user in other_users%}
+                            <tr>
+                                <td><img style="height:10vh;" class="circle responsive-img" id='profile_pic' src="../../media/{{ other_user.image.avatar }}" /></td>
+                                <td><a href="{%url 'user_profile:index' user_id=other_user.profile.user.id%}">{{other_user.profile.user.firstname}} {{other_user.profile.user.lastname}}</a></td>
+                                <td>{{other_user.profile.city}}, {{other_user.profile.state}}</td>
+                                <td>{{other_user.distance}} miles</td>
+                            </tr>
+                            {%endfor%}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
                 <h3>Your info is incomplete!</h3>
                 <h3>Would you like to update?</h3>
-                <h3><a href="{%url 'user_profile:edit_profile' user_id=user.id %}">Take There!</a></h3>
-            {% endif %}
+                <h3><a href="{%url 'user_profile:edit_profile' user_id=user.id %}">Take There!</a></h3> {% endif %}
+            </div>
         </div>
-        <div id="footer">
-        </div>
-    </div>
-</body>
+    </body>
+
 </html>

@@ -28,6 +28,9 @@
             <div class="nav-wrapper">
                 <a href="{%url 'main:index'%}" class="brand-logo"><img style="height:25px;" src="{% static 'main/logo.png' %}" alt=""> Platos</a>
                 <ul class="right hide-on-med-and-down">
+                    {% if active_user.userLevel %}
+                    <li><a href="{% url 'ADMINISTRATION:index '%}">ADMINISTRATION</a></li>
+                    {% endif %}
                     <li><a href="">Message</a></li>
                     <li style="margin-right:10px;"><a href="{% url 'user_profile:view_times' %}">Schedule</a></li>
                     <!-- Dropdown Trigger -->

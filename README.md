@@ -1,7 +1,7 @@
 # Platos
 By: Jake Herman, Priscilla Mannuel, Nishant Aggarwal
 
-![alt text](Platos/Screenshot (2).png "Description goes here")
+![alt text](Platos/Screenshot_(2).png "Description goes here")
 
 ## What is Platos?
 
